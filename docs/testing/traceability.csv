@@ -1,0 +1,25 @@
+Requirement ID,Description,Use cases,Test cases,Functional validation coverage
+FR1,"Account registration, sign-in and sign-out with session invalidation.",UC-11,"TC-001, TC-031, TC-038",Uncovered
+FR2,View public profiles and edit own display name and description.,UC-11,"TC-002, TC-031, TC-032, TC-040",Partial
+FR3,"Search title/author and view book details, including a clear empty result.",UC-01,"TC-003, TC-004, TC-039, TC-042",Full
+FR4,"Maintain exactly one primary status per user/book; add, move and remove entries; record/clear completion date; support custom shelves.",UC-02,"TC-005, TC-006, TC-007, TC-008, TC-012, TC-031, TC-039, TC-043, TC-044",Partial
+FR5,Accept whole pages 0 to known positive total; calculate page/total x 100; disable unknown totals and prompt for completion at 100%.,UC-03,"TC-009, TC-010, TC-011, TC-012, TC-039, TC-042, TC-043",Full
+FR6,"Publish, browse, edit and delete own ratings/reviews; show review on book and profile.","UC-04, UC-05","TC-013, TC-014, TC-015, TC-031, TC-037, TC-039, TC-040, TC-042",Partial
+FR7,Book-specific threads/replies with contributor display name and posting time.,UC-07,"TC-016, TC-017, TC-039, TC-040, TC-042",Full
+FR8,Contributors flag spoiler content; hide text until deliberate reveal. Page/percentage threshold extension remains in US8 backlog.,UC-07,"TC-018, TC-019, TC-039",Full
+FR9,Read supported EPUBs; owner-only passage notes with create/revisit/delete; safe errors for unreadable files.,UC-12,"TC-020, TC-031, TC-036",Uncovered
+FR10,"Private date-filtered summaries of completed books, grouped by genre and author.",UC-09,"TC-021, TC-036",Uncovered
+FR11,Quarter-star overall rating; optional prose/characters/plot sub-ratings and content warnings; preserve old reviews.,"UC-04, UC-05","TC-014, TC-022",Partial
+FR12,"Book-specific buddy groups with invitations, accept/reject and accepted-member-only discussion.",UC-13,"TC-023, TC-036",Uncovered
+FR13,Recommend by community review count descending; title ascending breaks ties; link book details.,UC-14,TC-024,Uncovered
+FR14,Allow author applications for specific books; admin approves verification and labelled author participation.,UC-15,TC-025,Uncovered
+FR15,Follow/unfollow readers; suggestions and feed expose only community-visible activity.,UC-06,TC-026,Uncovered
+FR16,Report content; admin-only queue and dismissal/removal/warning decisions with audit information.,"UC-08, UC-10",TC-027,Uncovered
+NFR1,"With 100 sample books and one active user, at least 19/20 searches and 19/20 shelf updates finish within 2 seconds from submission to displayed result.",System-wide,TC-028,Not required for NFRs
+NFR2,"Add from details in at most three actions; at least 4/5 first-time readers complete search, add and status change within 3 minutes with only a task prompt.",System-wide,TC-029,Not required for NFRs
+NFR3,"Core controls have visible labels or accessible names, keyboard operation and visible focus; core workflow is mouse-free; status/errors do not rely on colour alone.",System-wide,TC-030,Not required for NFRs
+NFR4,"Authenticated operations reject changes to another user profile, shelf, review or note; dedicated password hashing; sign-out invalidates session.",System-wide,"TC-001, TC-015, TC-020, TC-025, TC-027, TC-031, TC-037",Not required for NFRs
+NFR5,"Saved personal records survive reopening; failed save shows error, retains last saved data and never claims success. In-memory adapter is test-only.",System-wide,"TC-010, TC-022, TC-032, TC-033, TC-039, TC-041",Not required for NFRs
+NFR6,"Separate presentation, application rules and storage. Adapter replacement requires no changes to search or shelf screens; verify same checks and dependencies.",System-wide,TC-034,Not required for NFRs
+NFR7,"Future persistent service: 10,000 books, 50 concurrent users, five-minute trial; at least 95% of searches/updates within 3 seconds and error rate below 1%; record hardware/workload.",System-wide,TC-035,Not required for NFRs
+NFR8,"Shelves, progress, EPUBs, notes and summaries are owner-private; profiles/reviews/public forum community-visible; groups accepted-member-only; verify second-account retrieval.",System-wide,"TC-007, TC-020, TC-021, TC-023, TC-026, TC-036, TC-040, TC-043",Not required for NFRs
