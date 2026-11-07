@@ -11,7 +11,7 @@ function render() {
   if (screen === 'catalogue') {
     const matches = service.search(query);
     view.innerHTML = `<h1>Your next chapter starts here</h1><p class="intro">Find a book. Track your journey. Join the conversation.</p><form id="search" class="search"><label>Search by title or author<input id="query" value="${esc(query)}" placeholder="Try Jane Austen"></label><button>Search</button></form><p class="muted">${matches.length} books in this result · local sample catalogue</p><div class="grid">${matches.map(b => `<article class="card"><div class="cover" style="background:${b.colour}">${esc(b.title)}</div><h2>${esc(b.title)}</h2><p class="muted">${esc(b.author)}</p><button data-book="${b.id}">View book</button></article>`).join('') || '<p>No results. Try another title or author.</p>'}</div>`;
-    document.querySelector('#search').onsubmit = e => { e.preventDefault(); query = document.querySelector('#query').value; render(); };
+    document.querySelector('#search').onsubmit = e => { e.preventDefault(); query = document.querySelector('#query').value; render(); document.querySelector('#search button').focus(); };
   } else if (screen === 'shelves') {
     if (!service.user) { view.innerHTML = '<h1>My shelves</h1><p>Choose a demo reader to see their private reading list.</p>'; return; }
     const shelves = service.shelves();
