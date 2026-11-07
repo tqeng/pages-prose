@@ -1,6 +1,6 @@
 # Detailed Test Cases
 
-44 designed cases. Actual execution evidence is retained in the adjacent result files.
+44 test cases. Results are recorded below and in the saved test output.
 
 
 ## TC-001 Account registration and session lifecycle
@@ -19,7 +19,7 @@ Preconditions: Future authentication service; unused email; two browser sessions
 
 Expected: Registration succeeds once; passwords are hashed with a dedicated password hash; invalid credentials fail; sign-out invalidates the session.
 
-Actual: Blocked: demo selection has no registration, password storage or authenticated server session.
+Actual: Blocked: the demo has no sign-up, password storage, or real sign-in sessions.
 
 Status: Blocked; priority: High
 
@@ -40,7 +40,7 @@ Preconditions: Alice selected; fresh service and b1 available.
 
 Expected: Name and bio are trimmed and updated; review remains visible; blank name is rejected.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -59,7 +59,7 @@ Preconditions: Fresh catalogue with b1 Pride and Prejudice and b2 Frankenstein.
 
 Expected: Queries are case-insensitive and trimmed; correct book returned; details show title, author and 432 pages.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -76,7 +76,7 @@ Preconditions: Five-book sample catalogue.
 
 Expected: Whitespace returns all five books; unmatched query returns an empty result set; UI no-results text is checked during manual follow-up.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -91,11 +91,11 @@ Preconditions: Alice selected and b1 absent from her shelves.
 
 2. Move b1 to Currently Reading.
 
-3. Attempt Favourite Read as primary status.
+3. Attempt Favourite Read as main status.
 
-Expected: Exactly one record remains with Currently Reading; unsupported primary status is rejected.
+Expected: Exactly one record remains with Currently Reading; invalid main reading status is rejected.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -114,7 +114,7 @@ Preconditions: Alice selected; fixed test clock 2026-11-07T18:00:00Z.
 
 Expected: Completion date equals the test clock; leaving Completed clears that date.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -133,7 +133,7 @@ Preconditions: Alice and Bob each have b1 on a shelf.
 
 Expected: Bob has no b1 entry; Alice entry is retained.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -146,11 +146,11 @@ Preconditions: Future custom-shelf UI and service; Alice owns a b1 entry.
 
 1. Create shelf "Summer".
 
-2. Assign b1 while retaining its primary status.
+2. Assign b1 while retaining its main status.
 
 3. Rename shelf then remove the custom membership.
 
-Expected: Custom label changes do not duplicate or erase the primary status or progress.
+Expected: Custom label changes do not duplicate or erase the main status or progress.
 
 Actual: Blocked: custom shelf creation and membership are not implemented.
 
@@ -169,7 +169,7 @@ Preconditions: Alice has b1 Currently Reading; total 432 pages.
 
 Expected: All values accepted; percentages are exactly 0, 50 and 100.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -186,7 +186,7 @@ Preconditions: Alice has b1 page 20 saved.
 
 Expected: Each invalid input is rejected and page 20 remains. UI converts valid numeric input before calling the service.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -197,13 +197,15 @@ Requirements: FR5
 
 Preconditions: b5 has missing pages; Alice has shelved it.
 
-1. Attempt to save page 0.
+1. Attempt to save page
 
-2. Repeat with b5 total pages set to zero.
+2. 
+
+3. Repeat with b5 total pages set to zero.
 
 Expected: Both saves are rejected as tracking unavailable; percentage is not calculated.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -214,15 +216,17 @@ Requirements: FR5, FR4
 
 Preconditions: Alice has b1 Currently Reading.
 
-1. Save page 432.
+1. Save page
 
-2. Inspect status and completion prompt flag.
+2. 
 
-3. Explicitly move to Completed and repeat save.
+3. Inspect status and completion prompt flag.
+
+4. Explicitly move to Completed and repeat save.
 
 Expected: Last-page save requests confirmation without changing status; Completed suppresses further prompts.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -243,7 +247,7 @@ Preconditions: Alice selected, b1 available, no existing review.
 
 Expected: One trimmed review is created; edits replace it; deletion removes it from book and profile.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -260,12 +264,12 @@ Preconditions: Alice selected and b1 available.
 
 Expected: All 20 valid values are accepted; every invalid value is rejected without creating a second review.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
 
-## TC-015 Review ownership through application rules
+## TC-015 Only edit or delete your own review
 
 Requirements: FR6, NFR4
 
@@ -279,9 +283,9 @@ Preconditions: Alice has an existing b1 review.
 
 4. Read the review.
 
-Expected: Both operations are rejected and original text remains. This checks demo service ownership, not authenticated security.
+Expected: Both operations are rejected and original text remains. This checks demo checks on who owns a record, not security with real sign-in.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -300,7 +304,7 @@ Preconditions: Alice selected; b1 and b2 exist; fixed test clock.
 
 Expected: b1 contains thread and reply with author, parent and timestamp; b2 contains neither.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -319,7 +323,7 @@ Preconditions: Alice has a thread on b1.
 
 Expected: Every invalid contribution fails; no extra posts are saved.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -338,7 +342,7 @@ Preconditions: Alice posts b1 text "Ending" flagged as spoiler.
 
 Expected: Hidden view contains no spoiler text; explicit reveal returns text; a new view defaults to hidden.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -349,11 +353,15 @@ Requirements: FR8
 
 Preconditions: Future threshold metadata and UI; readers at different progress points.
 
-1. Flag a post at page 200 of 432.
+1. Flag a post at page 200 of
 
-2. Open as readers below and above page 200.
+2. 
 
-3. Explicitly reveal as the reader below page 200.
+3. Open as readers below and above page
+
+4. 
+
+5. Explicitly reveal as the reader below page 200.
 
 Expected: Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content.
 
@@ -376,7 +384,7 @@ Preconditions: Future EPUB reader; valid EPUB, corrupt EPUB and non-EPUB files; 
 
 Expected: Notes retain correct passage anchors and owner privacy; invalid files show errors without removing saved notes.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Low
 
@@ -397,7 +405,7 @@ Preconditions: Future analytics; known completion dates including date-range bou
 
 Expected: Counts match boundary fixtures; empty range is zero; Bob cannot retrieve Alice summary.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Low
 
@@ -418,7 +426,7 @@ Preconditions: Future enhanced review editor; existing overall-only review.
 
 Expected: Old review remains readable; fields are optional; valid details persist; invalid save leaves the last saved version intact.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -439,7 +447,7 @@ Preconditions: Future buddy-read groups; Alice, Bob and non-member Charlie.
 
 Expected: Rejected or unaccepted members have no access; accepted Bob can read/write; Charlie is denied.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -460,7 +468,7 @@ Preconditions: Future recommendation service; books with 3, 2, 2 and 0 reviews.
 
 Expected: Correct stable order and detail links; empty activity is handled clearly.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -481,7 +489,7 @@ Preconditions: Future author verification; reader, applicant and admin accounts.
 
 Expected: Only admin can verify; badge is tied to the approved author/book; posts visibly identify author; failed applications do not grant a badge.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -502,7 +510,7 @@ Preconditions: Future follow/feed service; Alice and Bob with public reviews and
 
 Expected: Following list and eligible review feed update; private progress and shelves never appear; unfollowed future activity is excluded.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -523,7 +531,7 @@ Preconditions: Future reports and moderation; existing review/thread; reader and
 
 Expected: Reader queue access denied; resolution action, admin and timestamp recorded; removed content hidden; already-removed case handled.
 
-Actual: Feature is outside the implemented prototype; execution awaits its implementation.
+Actual: Blocked: this feature has not been built yet.
 
 Status: Blocked; priority: Medium
 
@@ -544,7 +552,7 @@ Preconditions: Fresh local browser; 100 generated book fixtures; one selected re
 
 Expected: At least 19 of 20 searches AND 19 of 20 shelf updates complete within 2,000 ms.
 
-Actual: 100 books, one reader: 20/20 searches and 20/20 updates within 2 seconds; maxima 6.6 ms and 6.5 ms.
+Actual: With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms.
 
 Status: Pass; priority: High
 
@@ -584,16 +592,16 @@ Preconditions: Browser with Alice selected and fresh interactive page.
 
 Expected: Sample operations work without mouse clicks; discovery controls have labels; focus is visible and status/error text is readable. Full sequential-navigation and screen-reader audit remains required.
 
-Actual: Search, open, add, progress and review operated with keyboard after programmatic focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.
+Actual: Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.
 
 Status: Pass; priority: Medium
 
 
-## TC-031 Authenticated security across protected operations
+## TC-031 Check real sign-in and access rules
 
 Requirements: NFR4, FR1, FR2, FR4, FR6, FR9
 
-Preconditions: Future backend authentication; two accounts; password database and invalidated session fixtures.
+Preconditions: Future server-side sign-in; two accounts; password database and ended session fixtures.
 
 1. Inspect password hashes.
 
@@ -601,18 +609,18 @@ Preconditions: Future backend authentication; two accounts; password database an
 
 3. Sign out Alice and replay the old session.
 
-Expected: Every cross-account write and invalidated-session request is denied server-side; passwords use a dedicated password-hashing function.
+Expected: Every attempt to change another user's data and request using a session that has ended is denied server-side; passwords use a a password-hashing tool designed to store passwords safely.
 
-Actual: Blocked: browser demo selection and localStorage cannot meet backend authentication or security requirements.
+Actual: Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements.
 
 Status: Blocked; priority: High
 
 
-## TC-032 Reload through storage adapter
+## TC-032 Keep saved data when the app reopens
 
 Requirements: NFR5, FR2, FR4, FR5, FR6, FR7
 
-Preconditions: Map-backed browser-storage test double; fresh service.
+Preconditions: Map-backed test version of browser storage; fresh service.
 
 1. Save profile, shelf, page, review and discussion.
 
@@ -622,12 +630,12 @@ Preconditions: Map-backed browser-storage test double; fresh service.
 
 Expected: All saved values remain. TC-039 separately verifies an actual browser reload.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
 
-## TC-033 Failed application saves are atomic
+## TC-033 Failed saves keep existing data
 
 Requirements: NFR5
 
@@ -639,16 +647,16 @@ Preconditions: MemoryStore with one saved shelf; inject save exception "Disk ful
 
 Expected: Every operation throws; neither last saved state nor in-memory application state changes.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
 
-## TC-034 Replace storage without changing screens
+## TC-034 Change storage without changing the screens
 
 Requirements: NFR6
 
-Preconditions: MemoryStore and BrowserStore test double implementing load/save.
+Preconditions: MemoryStore and test version of BrowserStore implementing load/save.
 
 1. Run identical search, shelf and progress assertions with each adapter.
 
@@ -656,12 +664,12 @@ Preconditions: MemoryStore and BrowserStore test double implementing load/save.
 
 Expected: Same application contract works with both adapters; screens use ReadingService methods; no direct data reads/writes in screen handlers. UI composition still selects an adapter.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: Medium
 
 
-## TC-035 Future persistent-service scalability target
+## TC-035 Future test with many books and users
 
 Requirements: NFR7
 
@@ -669,9 +677,9 @@ Preconditions: Future deployed persistent service; 10,000 books; 50 concurrent a
 
 1. Run mixed search and shelf-update workload for five minutes.
 
-2. Measure each action end to end.
+2. Measure each action from the user's action to the visible result.
 
-3. Calculate fraction within three seconds and application error rate.
+3. Calculate fraction within three seconds and error rate.
 
 Expected: At least 95% of actions finish within three seconds and error rate is below 1%; publish hardware, workload and raw measurements.
 
@@ -684,7 +692,7 @@ Status: Blocked; priority: Low
 
 Requirements: NFR8, FR4, FR5, FR9, FR10, FR12
 
-Preconditions: Future authenticated backend; Alice private shelves, progress, EPUB, notes, summary and group.
+Preconditions: Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group.
 
 1. As Bob request each Alice resource by direct ID and list endpoints.
 
@@ -692,9 +700,9 @@ Preconditions: Future authenticated backend; Alice private shelves, progress, EP
 
 3. Verify public profile, review and forum remain accessible.
 
-Expected: All private resource retrieval is denied, not just hidden in UI; public resources remain visible.
+Expected: All access to private records is denied, not just hidden in UI; public resources remain visible.
 
-Actual: Blocked: full privacy needs authenticated server storage; demo isolation in TC-043 is insufficient.
+Actual: Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient.
 
 Status: Blocked; priority: High
 
@@ -728,7 +736,7 @@ Preconditions: Fresh service signed out.
 
 Expected: Public reads work; all listed operations requiring a selected reader are rejected. Real authentication remains deferred.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -768,7 +776,7 @@ Preconditions: Alice selected in fresh service.
 
 Expected: All community-visible content remains readable; no private shelves are included in the public profile object.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -806,7 +814,7 @@ Preconditions: Alice selected with no shelves.
 
 Expected: Every invalid operation is rejected; no shelf records are created.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -825,9 +833,9 @@ Preconditions: Alice selected in fresh service.
 
 4. Switch back to Alice.
 
-Expected: Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 validation.
+Expected: Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 checking.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: High
 
@@ -846,6 +854,6 @@ Preconditions: Alice selected; controlled clock can advance one day.
 
 Expected: Repeated same-status save preserves first date; a later new completion records the new date.
 
-Actual: Automated assertions passed; see matching ID in unit-results.tap.
+Actual: Passed. See this test's result in unit-results.tap.
 
 Status: Pass; priority: Medium

@@ -12,7 +12,7 @@ npm start
 
 Open http://127.0.0.1:3000 and choose Alice or Bob from **Demo reader**. Search Austen, open Pride and Prejudice, add it, save page 432, then explicitly choose Completed. Try a 4.25-star review and spoiler discussion. Refresh, choose Alice again, and check My shelves.
 
-These are demo identities, not secure accounts. Records share one browser origin and are inspectable with browser tools. Use sample data only. There is no server authentication, shared database or production privacy boundary. Browser data can be cleared; malformed saved JSON currently needs local storage reset. Covers are generated title panels.
+These are demo identities, not secure accounts. Records share one browser origin and are inspectable with browser tools. Use sample data only. There is no server authentication, shared database or production privacy boundary. Browser data can be cleared; malformed saved JSON currently needs local storage reset. The interface uses a simple black-and-white wireframe layout with book-cover placeholders.
 
 ## Tests
 

@@ -14,7 +14,7 @@
       "Retry a protected request with the old session."
     ],
     "expected": "Registration succeeds once; passwords are hashed with a dedicated password hash; invalid credentials fail; sign-out invalidates the session.",
-    "actual": "Blocked: demo selection has no registration, password storage or authenticated server session.",
+    "actual": "Blocked: the demo has no sign-up, password storage, or real sign-in sessions.",
     "status": "Blocked",
     "priority": "High"
   },
@@ -32,7 +32,7 @@
       "Attempt a blank display name."
     ],
     "expected": "Name and bio are trimmed and updated; review remains visible; blank name is rejected.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -49,7 +49,7 @@
       "Open b1 details."
     ],
     "expected": "Queries are case-insensitive and trimmed; correct book returned; details show title, author and 432 pages.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -65,7 +65,7 @@
       "Search \"zzzzzz\"."
     ],
     "expected": "Whitespace returns all five books; unmatched query returns an empty result set; UI no-results text is checked during manual follow-up.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -79,10 +79,10 @@
     "steps": [
       "Add b1 as Want to Read.",
       "Move b1 to Currently Reading.",
-      "Attempt Favourite Read as primary status."
+      "Attempt Favourite Read as main status."
     ],
-    "expected": "Exactly one record remains with Currently Reading; unsupported primary status is rejected.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "expected": "Exactly one record remains with Currently Reading; invalid main reading status is rejected.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -99,7 +99,7 @@
       "Move b1 to Want to Read."
     ],
     "expected": "Completion date equals the test clock; leaving Completed clears that date.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -117,7 +117,7 @@
       "Switch to Alice and read her shelves."
     ],
     "expected": "Bob has no b1 entry; Alice entry is retained.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -130,10 +130,10 @@
     "preconditions": "Future custom-shelf UI and service; Alice owns a b1 entry.",
     "steps": [
       "Create shelf \"Summer\".",
-      "Assign b1 while retaining its primary status.",
+      "Assign b1 while retaining its main status.",
       "Rename shelf then remove the custom membership."
     ],
-    "expected": "Custom label changes do not duplicate or erase the primary status or progress.",
+    "expected": "Custom label changes do not duplicate or erase the main status or progress.",
     "actual": "Blocked: custom shelf creation and membership are not implemented.",
     "status": "Blocked",
     "priority": "Medium"
@@ -150,7 +150,7 @@
       "Inspect percentage after each save."
     ],
     "expected": "All values accepted; percentages are exactly 0, 50 and 100.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -167,7 +167,7 @@
       "Read the stored page."
     ],
     "expected": "Each invalid input is rejected and page 20 remains. UI converts valid numeric input before calling the service.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -179,11 +179,12 @@
     ],
     "preconditions": "b5 has missing pages; Alice has shelved it.",
     "steps": [
-      "Attempt to save page 0.",
+      "Attempt to save page",
+      "",
       "Repeat with b5 total pages set to zero."
     ],
     "expected": "Both saves are rejected as tracking unavailable; percentage is not calculated.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -196,12 +197,13 @@
     ],
     "preconditions": "Alice has b1 Currently Reading.",
     "steps": [
-      "Save page 432.",
+      "Save page",
+      "",
       "Inspect status and completion prompt flag.",
       "Explicitly move to Completed and repeat save."
     ],
     "expected": "Last-page save requests confirmation without changing status; Completed suppresses further prompts.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -219,7 +221,7 @@
       "Delete the review."
     ],
     "expected": "One trimmed review is created; edits replace it; deletion removes it from book and profile.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -236,13 +238,13 @@
       "Attempt 0, 5.25, 4.1, NaN, Infinity and string \"4\"."
     ],
     "expected": "All 20 valid values are accepted; every invalid value is rejected without creating a second review.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
   {
     "id": "TC-015",
-    "title": "Review ownership through application rules",
+    "title": "Only edit or delete your own review",
     "requirements": [
       "FR6",
       "NFR4"
@@ -254,8 +256,8 @@
       "Attempt to delete it.",
       "Read the review."
     ],
-    "expected": "Both operations are rejected and original text remains. This checks demo service ownership, not authenticated security.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "expected": "Both operations are rejected and original text remains. This checks demo checks on who owns a record, not security with real sign-in.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -272,7 +274,7 @@
       "Inspect b1 and b2 discussions."
     ],
     "expected": "b1 contains thread and reply with author, parent and timestamp; b2 contains neither.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -289,7 +291,7 @@
       "Reply on b2 using the b1 parent ID."
     ],
     "expected": "Every invalid contribution fails; no extra posts are saved.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -306,7 +308,7 @@
       "Read again without that ID."
     ],
     "expected": "Hidden view contains no spoiler text; explicit reveal returns text; a new view defaults to hidden.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -318,8 +320,10 @@
     ],
     "preconditions": "Future threshold metadata and UI; readers at different progress points.",
     "steps": [
-      "Flag a post at page 200 of 432.",
-      "Open as readers below and above page 200.",
+      "Flag a post at page 200 of",
+      "",
+      "Open as readers below and above page",
+      "",
       "Explicitly reveal as the reader below page 200."
     ],
     "expected": "Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content.",
@@ -342,7 +346,7 @@
       "Import corrupt and unsupported files."
     ],
     "expected": "Notes retain correct passage anchors and owner privacy; invalid files show errors without removing saved notes.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Low"
   },
@@ -361,7 +365,7 @@
       "Attempt Bob access to Alice summary."
     ],
     "expected": "Counts match boundary fixtures; empty range is zero; Bob cannot retrieve Alice summary.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Low"
   },
@@ -380,7 +384,7 @@
       "Reject an invalid sub-rating and reopen."
     ],
     "expected": "Old review remains readable; fields are optional; valid details persist; invalid save leaves the last saved version intact.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -399,7 +403,7 @@
       "Bob opens discussion after acceptance."
     ],
     "expected": "Rejected or unaccepted members have no access; accepted Bob can read/write; Charlie is denied.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -417,7 +421,7 @@
       "Repeat with no reviews."
     ],
     "expected": "Correct stable order and detail links; empty activity is handled clearly.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -436,7 +440,7 @@
       "Post as the verified author."
     ],
     "expected": "Only admin can verify; badge is tied to the approved author/book; posts visibly identify author; failed applications do not grant a badge.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -455,7 +459,7 @@
       "Unfollow and publish another Bob review."
     ],
     "expected": "Following list and eligible review feed update; private progress and shelves never appear; unfollowed future activity is excluded.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -474,7 +478,7 @@
       "Resolve a report whose content was already removed."
     ],
     "expected": "Reader queue access denied; resolution action, admin and timestamp recorded; removed content hidden; already-removed case handled.",
-    "actual": "Feature is outside the implemented prototype; execution awaits its implementation.",
+    "actual": "Blocked: this feature has not been built yet.",
     "status": "Blocked",
     "priority": "Medium"
   },
@@ -492,7 +496,7 @@
       "Record environment and all timings."
     ],
     "expected": "At least 19 of 20 searches AND 19 of 20 shelf updates complete within 2,000 ms.",
-    "actual": "100 books, one reader: 20/20 searches and 20/20 updates within 2 seconds; maxima 6.6 ms and 6.5 ms.",
+    "actual": "With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms.",
     "status": "Pass",
     "priority": "High"
   },
@@ -527,13 +531,13 @@
       "Inspect focus outline and textual feedback."
     ],
     "expected": "Sample operations work without mouse clicks; discovery controls have labels; focus is visible and status/error text is readable. Full sequential-navigation and screen-reader audit remains required.",
-    "actual": "Search, open, add, progress and review operated with keyboard after programmatic focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.",
+    "actual": "Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.",
     "status": "Pass",
     "priority": "Medium"
   },
   {
     "id": "TC-031",
-    "title": "Authenticated security across protected operations",
+    "title": "Check real sign-in and access rules",
     "requirements": [
       "NFR4",
       "FR1",
@@ -542,20 +546,20 @@
       "FR6",
       "FR9"
     ],
-    "preconditions": "Future backend authentication; two accounts; password database and invalidated session fixtures.",
+    "preconditions": "Future server-side sign-in; two accounts; password database and ended session fixtures.",
     "steps": [
       "Inspect password hashes.",
       "Use Bob credentials to alter Alice profile, shelf, review and note by ID.",
       "Sign out Alice and replay the old session."
     ],
-    "expected": "Every cross-account write and invalidated-session request is denied server-side; passwords use a dedicated password-hashing function.",
-    "actual": "Blocked: browser demo selection and localStorage cannot meet backend authentication or security requirements.",
+    "expected": "Every attempt to change another user's data and request using a session that has ended is denied server-side; passwords use a a password-hashing tool designed to store passwords safely.",
+    "actual": "Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements.",
     "status": "Blocked",
     "priority": "High"
   },
   {
     "id": "TC-032",
-    "title": "Reload through storage adapter",
+    "title": "Keep saved data when the app reopens",
     "requirements": [
       "NFR5",
       "FR2",
@@ -564,20 +568,20 @@
       "FR6",
       "FR7"
     ],
-    "preconditions": "Map-backed browser-storage test double; fresh service.",
+    "preconditions": "Map-backed test version of browser storage; fresh service.",
     "steps": [
       "Save profile, shelf, page, review and discussion.",
       "Construct a new service using the same stored JSON.",
       "Read each record."
     ],
     "expected": "All saved values remain. TC-039 separately verifies an actual browser reload.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
   {
     "id": "TC-033",
-    "title": "Failed application saves are atomic",
+    "title": "Failed saves keep existing data",
     "requirements": [
       "NFR5"
     ],
@@ -587,37 +591,37 @@
       "After each error compare service state and adapter state to original."
     ],
     "expected": "Every operation throws; neither last saved state nor in-memory application state changes.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
   {
     "id": "TC-034",
-    "title": "Replace storage without changing screens",
+    "title": "Change storage without changing the screens",
     "requirements": [
       "NFR6"
     ],
-    "preconditions": "MemoryStore and BrowserStore test double implementing load/save.",
+    "preconditions": "MemoryStore and test version of BrowserStore implementing load/save.",
     "steps": [
       "Run identical search, shelf and progress assertions with each adapter.",
       "Review UI imports and service dependency boundaries."
     ],
     "expected": "Same application contract works with both adapters; screens use ReadingService methods; no direct data reads/writes in screen handlers. UI composition still selects an adapter.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "Medium"
   },
   {
     "id": "TC-035",
-    "title": "Future persistent-service scalability target",
+    "title": "Future test with many books and users",
     "requirements": [
       "NFR7"
     ],
     "preconditions": "Future deployed persistent service; 10,000 books; 50 concurrent authenticated users; recorded hardware.",
     "steps": [
       "Run mixed search and shelf-update workload for five minutes.",
-      "Measure each action end to end.",
-      "Calculate fraction within three seconds and application error rate."
+      "Measure each action from the user's action to the visible result.",
+      "Calculate fraction within three seconds and error rate."
     ],
     "expected": "At least 95% of actions finish within three seconds and error rate is below 1%; publish hardware, workload and raw measurements.",
     "actual": "Blocked: persistent multi-user service does not exist; local performance timings cannot validate this target.",
@@ -635,14 +639,14 @@
       "FR10",
       "FR12"
     ],
-    "preconditions": "Future authenticated backend; Alice private shelves, progress, EPUB, notes, summary and group.",
+    "preconditions": "Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group.",
     "steps": [
       "As Bob request each Alice resource by direct ID and list endpoints.",
       "Attempt unaccepted group discussion reads.",
       "Verify public profile, review and forum remain accessible."
     ],
-    "expected": "All private resource retrieval is denied, not just hidden in UI; public resources remain visible.",
-    "actual": "Blocked: full privacy needs authenticated server storage; demo isolation in TC-043 is insufficient.",
+    "expected": "All access to private records is denied, not just hidden in UI; public resources remain visible.",
+    "actual": "Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient.",
     "status": "Blocked",
     "priority": "High"
   },
@@ -681,7 +685,7 @@
       "Attempt private shelf access and each profile/shelf/progress/review/post mutation."
     ],
     "expected": "Public reads work; all listed operations requiring a selected reader are rejected. Real authentication remains deferred.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -725,7 +729,7 @@
       "Sign out and read book reviews, Alice public profile and discussion."
     ],
     "expected": "All community-visible content remains readable; no private shelves are included in the public profile object.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -763,7 +767,7 @@
       "Update b1 progress before shelving it."
     ],
     "expected": "Every invalid operation is rejected; no shelf records are created.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -782,8 +786,8 @@
       "Bob shelves b2.",
       "Switch back to Alice."
     ],
-    "expected": "Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 validation.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "expected": "Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 checking.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "High"
   },
@@ -800,7 +804,7 @@
       "Move away from Completed then complete again."
     ],
     "expected": "Repeated same-status save preserves first date; a later new completion records the new date.",
-    "actual": "Automated assertions passed; see matching ID in unit-results.tap.",
+    "actual": "Passed. See this test's result in unit-results.tap.",
     "status": "Pass",
     "priority": "Medium"
   }
