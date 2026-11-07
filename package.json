@@ -1,0 +1,12 @@
+{
+  "name": "pages-prose",
+  "version": "0.2.1",
+  "private": true,
+  "type": "module",
+  "description": "Team 8 reading and community prototype",
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/core.test.mjs"
+  },
+  "engines": { "node": ">=22" }
+}
