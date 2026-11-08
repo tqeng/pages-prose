@@ -33,4 +33,4 @@ The Deliverable 2.1 test documentation covers core functionality: eight function
 
 Implemented: title/author search, three primary shelves, progress, completion dates, profile editing, quarter-star review editing/deletion, public reviews/profiles, threads/replies, boolean spoiler reveal and local persistence.
 
-Deferred: accounts/sessions, custom shelves, follow/feed, sub-ratings/warnings, author verification, EPUB notes, analytics, groups, recommendations, moderation and spoiler thresholds. Complete authentication before treating demo ownership as security. The report includes proposed team allocations and the next three-week plan.
+Later: accounts/sessions, custom shelves, follow/feed, sub-ratings/warnings, author verification, EPUB notes, analytics, groups, recommendations, moderation and spoiler thresholds. Complete authentication before treating demo ownership as security. The report includes proposed team allocations and the next three-week plan.
