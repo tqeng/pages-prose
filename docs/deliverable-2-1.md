@@ -38,11 +38,6 @@ Each requirement is linked to one or more test cases. Writing a test does not me
 | FR6 | Publish, browse, edit and delete own ratings/reviews; show review on book and profile. Use cases: UC-04, UC-05 | TC-013 TC-014 TC-015 TC-031 TC-037 TC-039 TC-040 TC-042 | TC-013: Review create edit delete and profile link TC-014: Quarter-star boundaries and increments TC-015: Only edit or delete your own review TC-031: Check real sign-in and access rules TC-037: Render untrusted review text safely TC-039: Browser reading and discussion journey TC-040: Public profile review and discussion visibility TC-042: Reject unknown resources and unshelved progress | Partially Covered |
 | FR7 | Book-specific threads/replies with contributor display name and posting time. Use case: UC-07 | TC-016 TC-017 TC-039 TC-040 TC-042 | TC-016: Book-specific threads and replies TC-017: Reject invalid discussion contributions TC-039: Browser reading and discussion journey TC-040: Public profile review and discussion visibility TC-042: Reject unknown resources and unshelved progress | Fully Covered |
 | FR8 | Contributors flag spoiler content; hide text until deliberate reveal. Page/percentage threshold extension remains in US8 backlog. Use case: UC-07 | TC-018 TC-019 TC-039 | TC-018: Spoilers hidden until explicit reveal TC-019: Page-based spoiler thresholds TC-039: Browser reading and discussion journey | Fully Covered |
-
-# **Functional Traceability Continued**
-
-| Requirement ID | Requirement Description | Test Case ID | Test Case Description | Coverage |
-| :---- | :---- | :---- | :---- | :---- |
 | FR9 | Read supported EPUBs; owner-only passage notes with create/revisit/delete; safe errors for unreadable files. Use case: UC-12 | TC-020 TC-031 TC-036 | TC-020: EPUB notes privacy and invalid files TC-031: Check real sign-in and access rules TC-036: Private records cannot be retrieved by another account | Uncovered |
 | FR10 | Private date-filtered summaries of completed books, grouped by genre and author. Use case: UC-09 | TC-021 TC-036 | TC-021: Date-filtered reading summaries TC-036: Private records cannot be retrieved by another account | Uncovered |
 | FR11 | Quarter-star overall rating; optional prose/characters/plot sub-ratings and content warnings; preserve old reviews. Use cases: UC-04, UC-05 | TC-014 TC-022 | TC-014: Quarter-star boundaries and increments TC-022: Optional sub-ratings warnings and migration | Partially Covered |
@@ -54,7 +49,7 @@ Each requirement is linked to one or more test cases. Writing a test does not me
 
 **Coverage summary:** 4 requirements are fully tested (FR3, FR5, FR7, FR8), 4 are partly tested (FR2, FR4, FR6, FR11), and 8 are not yet tested (FR1, FR9, FR10, FR12-FR16). All 16 have planned test cases. These counts describe requirement testing, not how many lines of code were tested.
 
-# **Non Functional Test Coverage**
+Non Functional Test Coverage
 
 | Requirement ID | Requirement Description | Test Case ID | Test Case Description | Coverage |
 | :---- | :---- | :---- | :---- | :---- |
@@ -94,10 +89,9 @@ Start each test with fresh sample data. Follow the steps, compare the result wit
 
 Each test case lists its ID, related requirements, title, setup, steps, expected result, actual result, status, and priority. Blocked tests explain what is needed before they can run. A Pass applies only to the checks described in that case.
 
-## **TC-001 Account registration and session lifecycle**
-
-| Test Case ID | TC-001 |
+| Field | Details |
 | :---- | :---- |
+| **Test Case ID** | **TC-001** |
 | **Title** | Account registration and session lifecycle |
 | **Related Requirement ID(s)** | FR1, NFR4 |
 | **Preconditions** | Future authentication service; unused email; two browser sessions. |
@@ -106,11 +100,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: the demo has no sign-up, password storage, or real sign-in sessions. |
 | **Status** | Blocked |
 | **Priority** | High |
-
-## **TC-002 Edit profile and retain community reviews**
-
-| Test Case ID | TC-002 |
-| :---- | :---- |
+| **Test Case ID** | **TC-002** |
 | **Title** | Edit profile and retain community reviews |
 | **Related Requirement ID(s)** | FR2 |
 | **Preconditions** | Alice selected; fresh service and b1 available. |
@@ -119,11 +109,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-003 Search title or author and read details**
-
-| Test Case ID | TC-003 |
-| :---- | :---- |
+| **Test Case ID** | **TC-003** |
 | **Title** | Search title or author and read details |
 | **Related Requirement ID(s)** | FR3 |
 | **Preconditions** | Fresh catalogue with b1 Pride and Prejudice and b2 Frankenstein. |
@@ -132,11 +118,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-004 Empty and unmatched search**
-
-| Test Case ID | TC-004 |
-| :---- | :---- |
+| **Test Case ID** | **TC-004** |
 | **Title** | Empty and unmatched search |
 | **Related Requirement ID(s)** | FR3 |
 | **Preconditions** | Five-book sample catalogue. |
@@ -145,11 +127,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-005 Add and move one primary shelf record**
-
-| Test Case ID | TC-005 |
-| :---- | :---- |
+| **Test Case ID** | **TC-005** |
 | **Title** | Add and move one primary shelf record |
 | **Related Requirement ID(s)** | FR4 |
 | **Preconditions** | Alice selected and b1 absent from her shelves. |
@@ -158,11 +136,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-006 Completion date lifecycle**
-
-| Test Case ID | TC-006 |
-| :---- | :---- |
+| **Test Case ID** | **TC-006** |
 | **Title** | Completion date lifecycle |
 | **Related Requirement ID(s)** | FR4 |
 | **Preconditions** | Alice selected; fixed test clock 2026-11-07T18:00:00Z. |
@@ -171,11 +145,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-007 Remove only the current reader shelf entry**
-
-| Test Case ID | TC-007 |
-| :---- | :---- |
+| **Test Case ID** | **TC-007** |
 | **Title** | Remove only the current reader shelf entry |
 | **Related Requirement ID(s)** | FR4, NFR8 |
 | **Preconditions** | Alice and Bob each have b1 on a shelf. |
@@ -184,11 +154,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-008 Custom shelf organisation**
-
-| Test Case ID | TC-008 |
-| :---- | :---- |
+| **Test Case ID** | **TC-008** |
 | **Title** | Custom shelf organisation |
 | **Related Requirement ID(s)** | FR4 |
 | **Preconditions** | Future custom-shelf UI and service; Alice owns a b1 entry. |
@@ -197,11 +163,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: custom shelf creation and membership are not implemented. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-009 Progress boundaries and calculation**
-
-| Test Case ID | TC-009 |
-| :---- | :---- |
+| **Test Case ID** | **TC-009** |
 | **Title** | Progress boundaries and calculation |
 | **Related Requirement ID(s)** | FR5 |
 | **Preconditions** | Alice has b1 Currently Reading; total 432 pages. |
@@ -210,11 +172,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-010 Reject invalid progress without data loss**
-
-| Test Case ID | TC-010 |
-| :---- | :---- |
+| **Test Case ID** | **TC-010** |
 | **Title** | Reject invalid progress without data loss |
 | **Related Requirement ID(s)** | FR5, NFR5 |
 | **Preconditions** | Alice has b1 page 20 saved. |
@@ -223,11 +181,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-011 Unknown and zero page totals**
-
-| Test Case ID | TC-011 |
-| :---- | :---- |
+| **Test Case ID** | **TC-011** |
 | **Title** | Unknown and zero page totals |
 | **Related Requirement ID(s)** | FR5 |
 | **Preconditions** | b5 has missing pages; Alice has shelved it. |
@@ -236,11 +190,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-012 Prompt before recording completion**
-
-| Test Case ID | TC-012 |
-| :---- | :---- |
+| **Test Case ID** | **TC-012** |
 | **Title** | Prompt before recording completion |
 | **Related Requirement ID(s)** | FR5, FR4 |
 | **Preconditions** | Alice has b1 Currently Reading. |
@@ -249,11 +199,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-013 Review create edit delete and profile link**
-
-| Test Case ID | TC-013 |
-| :---- | :---- |
+| **Test Case ID** | **TC-013** |
 | **Title** | Review create edit delete and profile link |
 | **Related Requirement ID(s)** | FR6 |
 | **Preconditions** | Alice selected, b1 available, no existing review. |
@@ -262,11 +208,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-014 Quarter-star boundaries and increments**
-
-| Test Case ID | TC-014 |
-| :---- | :---- |
+| **Test Case ID** | **TC-014** |
 | **Title** | Quarter-star boundaries and increments |
 | **Related Requirement ID(s)** | FR6, FR11 |
 | **Preconditions** | Alice selected and b1 available. |
@@ -275,11 +217,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-015 Only edit or delete your own review**
-
-| Test Case ID | TC-015 |
-| :---- | :---- |
+| **Test Case ID** | **TC-015** |
 | **Title** | Only edit or delete your own review |
 | **Related Requirement ID(s)** | FR6, NFR4 |
 | **Preconditions** | Alice has an existing b1 review. |
@@ -288,11 +226,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-016 Book-specific threads and replies**
-
-| Test Case ID | TC-016 |
-| :---- | :---- |
+| **Test Case ID** | **TC-016** |
 | **Title** | Book-specific threads and replies |
 | **Related Requirement ID(s)** | FR7 |
 | **Preconditions** | Alice selected; b1 and b2 exist; fixed test clock. |
@@ -301,11 +235,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-017 Reject invalid discussion contributions**
-
-| Test Case ID | TC-017 |
-| :---- | :---- |
+| **Test Case ID** | **TC-017** |
 | **Title** | Reject invalid discussion contributions |
 | **Related Requirement ID(s)** | FR7 |
 | **Preconditions** | Alice has a thread on b1. |
@@ -314,11 +244,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-018 Spoilers hidden until explicit reveal**
-
-| Test Case ID | TC-018 |
-| :---- | :---- |
+| **Test Case ID** | **TC-018** |
 | **Title** | Spoilers hidden until explicit reveal |
 | **Related Requirement ID(s)** | FR8 |
 | **Preconditions** | Alice posts b1 text "Ending" flagged as spoiler. |
@@ -327,11 +253,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-019 Page-based spoiler thresholds**
-
-| Test Case ID | TC-019 |
-| :---- | :---- |
+| **Test Case ID** | **TC-019** |
 | **Title** | Page-based spoiler thresholds |
 | **Related Requirement ID(s)** | FR8 |
 | **Preconditions** | Future threshold metadata and UI; readers at different progress points. |
@@ -340,11 +262,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: US8 threshold extension deferred; current FR8 boolean flag and reveal are tested in TC-018 and TC-039. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-020 EPUB notes privacy and invalid files**
-
-| Test Case ID | TC-020 |
-| :---- | :---- |
+| **Test Case ID** | **TC-020** |
 | **Title** | EPUB notes privacy and invalid files |
 | **Related Requirement ID(s)** | FR9, NFR4, NFR8 |
 | **Preconditions** | Future EPUB reader; valid EPUB, corrupt EPUB and non-EPUB files; Alice and Bob. |
@@ -353,11 +271,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Low |
-
-## **TC-021 Date-filtered reading summaries**
-
-| Test Case ID | TC-021 |
-| :---- | :---- |
+| **Test Case ID** | **TC-021** |
 | **Title** | Date-filtered reading summaries |
 | **Related Requirement ID(s)** | FR10, NFR8 |
 | **Preconditions** | Future analytics; known completion dates including date-range boundaries, genres and authors. |
@@ -366,11 +280,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Low |
-
-## **TC-022 Optional sub-ratings warnings and migration**
-
-| Test Case ID | TC-022 |
-| :---- | :---- |
+| **Test Case ID** | **TC-022** |
 | **Title** | Optional sub-ratings warnings and migration |
 | **Related Requirement ID(s)** | FR11, NFR5 |
 | **Preconditions** | Future enhanced review editor; existing overall-only review. |
@@ -379,11 +289,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-023 Buddy-read invitation and membership privacy**
-
-| Test Case ID | TC-023 |
-| :---- | :---- |
+| **Test Case ID** | **TC-023** |
 | **Title** | Buddy-read invitation and membership privacy |
 | **Related Requirement ID(s)** | FR12, NFR8 |
 | **Preconditions** | Future buddy-read groups; Alice, Bob and non-member Charlie. |
@@ -392,11 +298,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-024 Deterministic community recommendations**
-
-| Test Case ID | TC-024 |
-| :---- | :---- |
+| **Test Case ID** | **TC-024** |
 | **Title** | Deterministic community recommendations |
 | **Related Requirement ID(s)** | FR13 |
 | **Preconditions** | Future recommendation service; books with 3, 2, 2 and 0 reviews. |
@@ -405,11 +307,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-025 Verified author application and admin decision**
-
-| Test Case ID | TC-025 |
-| :---- | :---- |
+| **Test Case ID** | **TC-025** |
 | **Title** | Verified author application and admin decision |
 | **Related Requirement ID(s)** | FR14, NFR4 |
 | **Preconditions** | Future author verification; reader, applicant and admin accounts. |
@@ -418,11 +316,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-026 Follow feed without private activity leakage**
-
-| Test Case ID | TC-026 |
-| :---- | :---- |
+| **Test Case ID** | **TC-026** |
 | **Title** | Follow feed without private activity leakage |
 | **Related Requirement ID(s)** | FR15, NFR8 |
 | **Preconditions** | Future follow/feed service; Alice and Bob with public reviews and private shelf activity. |
@@ -431,11 +325,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-027 Report and moderate with role enforcement**
-
-| Test Case ID | TC-027 |
-| :---- | :---- |
+| **Test Case ID** | **TC-027** |
 | **Title** | Report and moderate with role enforcement |
 | **Related Requirement ID(s)** | FR16, NFR4 |
 | **Preconditions** | Future reports and moderation; existing review/thread; reader and admin. |
@@ -444,11 +334,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: this feature has not been built yet. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-028 Measure 100-book browser performance**
-
-| Test Case ID | TC-028 |
-| :---- | :---- |
+| **Test Case ID** | **TC-028** |
 | **Title** | Measure 100-book browser performance |
 | **Related Requirement ID(s)** | NFR1 |
 | **Preconditions** | Fresh local browser; 100 generated book fixtures; one selected reader; fixed viewport. |
@@ -457,11 +343,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-029 First-time usability and action count**
-
-| Test Case ID | TC-029 |
-| :---- | :---- |
+| **Test Case ID** | **TC-029** |
 | **Title** | First-time usability and action count |
 | **Related Requirement ID(s)** | NFR2 |
 | **Preconditions** | Five first-time participants, fresh demo data and a timer; no coaching. |
@@ -470,11 +352,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: five first-time participants have not been recruited; no user-study results claimed. |
 | **Status** | Blocked |
 | **Priority** | Medium |
-
-## **TC-030 Keyboard access labels and focus sample**
-
-| Test Case ID | TC-030 |
-| :---- | :---- |
+| **Test Case ID** | **TC-030** |
 | **Title** | Keyboard access labels and focus sample |
 | **Related Requirement ID(s)** | NFR3 |
 | **Preconditions** | Browser with Alice selected and fresh interactive page. |
@@ -483,11 +361,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending. |
 | **Status** | Pass |
 | **Priority** | Medium |
-
-## **TC-031 Check real sign-in and access rules**
-
-| Test Case ID | TC-031 |
-| :---- | :---- |
+| **Test Case ID** | **TC-031** |
 | **Title** | Check real sign-in and access rules |
 | **Related Requirement ID(s)** | NFR4, FR1, FR2, FR4, FR6, FR9 |
 | **Preconditions** | Future server-side sign-in; two accounts; password database and ended session fixtures. |
@@ -496,11 +370,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements. |
 | **Status** | Blocked |
 | **Priority** | High |
-
-## **TC-032 Keep saved data when the app reopens**
-
-| Test Case ID | TC-032 |
-| :---- | :---- |
+| **Test Case ID** | **TC-032** |
 | **Title** | Keep saved data when the app reopens |
 | **Related Requirement ID(s)** | NFR5, FR2, FR4, FR5, FR6, FR7 |
 | **Preconditions** | Map-backed test version of browser storage; fresh service. |
@@ -509,11 +379,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-033 Failed saves keep existing data**
-
-| Test Case ID | TC-033 |
-| :---- | :---- |
+| **Test Case ID** | **TC-033** |
 | **Title** | Failed saves keep existing data |
 | **Related Requirement ID(s)** | NFR5 |
 | **Preconditions** | MemoryStore with one saved shelf; inject save exception "Disk full". |
@@ -522,11 +388,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-034 Change storage without changing the screens**
-
-| Test Case ID | TC-034 |
-| :---- | :---- |
+| **Test Case ID** | **TC-034** |
 | **Title** | Change storage without changing the screens |
 | **Related Requirement ID(s)** | NFR6 |
 | **Preconditions** | MemoryStore and test version of BrowserStore implementing load/save. |
@@ -535,11 +397,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | Medium |
-
-## **TC-035 Future test with many books and users**
-
-| Test Case ID | TC-035 |
-| :---- | :---- |
+| **Test Case ID** | **TC-035** |
 | **Title** | Future test with many books and users |
 | **Related Requirement ID(s)** | NFR7 |
 | **Preconditions** | Future deployed persistent service; 10,000 books; 50 concurrent authenticated users; recorded hardware. |
@@ -548,11 +406,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: persistent multi-user service does not exist; local performance timings cannot validate this target. |
 | **Status** | Blocked |
 | **Priority** | Low |
-
-## **TC-036 Private records cannot be retrieved by another account**
-
-| Test Case ID | TC-036 |
-| :---- | :---- |
+| **Test Case ID** | **TC-036** |
 | **Title** | Private records cannot be retrieved by another account |
 | **Related Requirement ID(s)** | NFR8, FR4, FR5, FR9, FR10, FR12 |
 | **Preconditions** | Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group. |
@@ -561,11 +415,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient. |
 | **Status** | Blocked |
 | **Priority** | High |
-
-## **TC-037 Render untrusted review text safely**
-
-| Test Case ID | TC-037 |
-| :---- | :---- |
+| **Test Case ID** | **TC-037** |
 | **Title** | Render untrusted review text safely |
 | **Related Requirement ID(s)** | FR6, NFR4 |
 | **Preconditions** | Browser demo with Alice selected and b1 details. |
@@ -574,11 +424,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Review payload rendered as literal text; no image element or script execution. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-038 Guest access boundary**
-
-| Test Case ID | TC-038 |
-| :---- | :---- |
+| **Test Case ID** | **TC-038** |
 | **Title** | Guest access boundary |
 | **Related Requirement ID(s)** | FR1, FR2, FR3, FR4, FR5, FR6, FR7 |
 | **Preconditions** | Fresh service signed out. |
@@ -587,11 +433,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-039 Browser reading and discussion journey**
-
-| Test Case ID | TC-039 |
-| :---- | :---- |
+| **Test Case ID** | **TC-039** |
 | **Title** | Browser reading and discussion journey |
 | **Related Requirement ID(s)** | FR3, FR4, FR5, FR6, FR7, FR8, NFR5 |
 | **Preconditions** | Fresh browser using the five-book catalogue; Alice and Bob demo identities. |
@@ -600,11 +442,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Search, add, move, progress prompt, review, spoiler reveal, reply, reader isolation and real page reload passed; two screenshots saved; no page errors. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-040 Public profile review and discussion visibility**
-
-| Test Case ID | TC-040 |
-| :---- | :---- |
+| **Test Case ID** | **TC-040** |
 | **Title** | Public profile review and discussion visibility |
 | **Related Requirement ID(s)** | FR2, FR6, FR7, NFR8 |
 | **Preconditions** | Alice selected in fresh service. |
@@ -613,11 +451,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-041 Browser save error and truthful feedback**
-
-| Test Case ID | TC-041 |
-| :---- | :---- |
+| **Test Case ID** | **TC-041** |
 | **Title** | Browser save error and truthful feedback |
 | **Related Requirement ID(s)** | NFR5 |
 | **Preconditions** | Browser has a saved Completed entry; inject localStorage.setItem failure. |
@@ -626,11 +460,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Failed browser save displayed an error and retained Completed; no success message. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-042 Reject unknown resources and unshelved progress**
-
-| Test Case ID | TC-042 |
-| :---- | :---- |
+| **Test Case ID** | **TC-042** |
 | **Title** | Reject unknown resources and unshelved progress |
 | **Related Requirement ID(s)** | FR3, FR4, FR5, FR6, FR7 |
 | **Preconditions** | Alice selected with no shelves. |
@@ -639,11 +469,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-043 Demo reading-list separation**
-
-| Test Case ID | TC-043 |
-| :---- | :---- |
+| **Test Case ID** | **TC-043** |
 | **Title** | Demo reading-list separation |
 | **Related Requirement ID(s)** | FR4, FR5, NFR8 |
 | **Preconditions** | Alice selected in fresh service. |
@@ -652,11 +478,7 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Actual Result** | Passed. See this test's result in unit-results.tap. |
 | **Status** | Pass |
 | **Priority** | High |
-
-## **TC-044 Completion date remains stable on repeat saves**
-
-| Test Case ID | TC-044 |
-| :---- | :---- |
+| **Test Case ID** | **TC-044** |
 | **Title** | Completion date remains stable on repeat saves |
 | **Related Requirement ID(s)** | FR4 |
 | **Preconditions** | Alice selected; controlled clock can advance one day. |
