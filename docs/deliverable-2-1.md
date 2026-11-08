@@ -10,23 +10,7 @@
 
 **Course:** DIGT2107 Practice of Software Development
 
-**Document Overview:** This report shows how we tested the requirements from Deliverable 1.2. It includes the test plan, results, test cases, GitHub branches, and work planned for the team.
-
-# **Iteration Goals and Objectives**
-
-1\. Build the main reading features: book search, shelves, progress, reviews, discussions, and basic spoiler hiding (US2-US5, US7-US8; FR3-FR8 and FR11).
-
-2\. Keep the screens, app rules, and data storage in separate files so they are easier to change.
-
-3\. Run unit and browser tests. Save the results and record any problems we find and fix.
-
-4\. Write tests for every functional and non-functional requirement, including features planned for later.
-
-5\. Organize the main, development, and feature branches. Save the report and test files, and mark the submission with the ITR2.1 tag.
-
 # **Requirement to Test Case Traceability**
-
-Each requirement is linked to one or more test cases. Writing a test does not mean the feature is finished or has passed. Fully Covered means all parts of the requirement were tested successfully. Partially Covered means only some parts were tested successfully. Uncovered means the feature has not been tested successfully yet. Passing a demo test does not prove that real accounts are secure.
 
 | Requirement ID | Requirement Description | Test Case ID | Test Case Description | Coverage |
 | :---- | :---- | :---- | :---- | :---- |
@@ -66,8 +50,6 @@ Non Functional Test Coverage
 
 # **Test Plan and Actual Results**
 
-**Scope:** Unit tests check the app's rules and storage. Browser tests check the reading workflow, what appears on screen, keyboard use, error messages, and speed. Tests for features that are not built yet are planned but marked Blocked.
-
 **Test data:** We use Alice and Bob as demo readers. Book b1 has 432 pages, b2 has 280 pages, and b5 has no page total. Unit tests use a fixed date. Browser tests start with empty storage. The speed test uses 100 sample books. Future privacy tests will need a third user, real sign-in, and group invitations.
 
 **Test environment:** Windows 11 (10.0.26300), Node 22.21.0, Chrome 157.0.8103.38, and Playwright. The computer has an AMD Ryzen 7 8700F processor and 32 GB of RAM. The browser window is 1440 x 1050 pixels. The app runs locally and saves data in the browser. The updated prototype passed all 24 unit tests and five browser checks on November 7, 2026 at 6:48 p.m. Toronto time.
@@ -86,8 +68,6 @@ Non Functional Test Coverage
 Start each test with fresh sample data. Follow the steps, compare the result with what was expected, and save the output or screenshots. Use Pass when the test meets its expected result, Fail when it does not, and Blocked when a needed feature or setup is missing. For each problem, record the test ID, steps, expected and actual results, severity, and person responsible. After a fix, rerun the affected tests. If the fix changes shared data, rerun all unit tests and the full browser workflow.
 
 # **Detailed Test Cases**
-
-Each test case lists its ID, related requirements, title, setup, steps, expected result, actual result, status, and priority. Blocked tests explain what is needed before they can run. A Pass applies only to the checks described in that case.
 
 | Field | Details |
 | :---- | :---- |
@@ -489,8 +469,6 @@ Each test case lists its ID, related requirements, title, setup, steps, expected
 | **Priority** | Medium |
 
 # **Task Allocation and Timeline**
-
-The table below suggests each person's work for the next three weeks. These are planned tasks, not claims that the work is already done. The November 8 submission is the current checkpoint.
 
 | Member | Proposed coding testing and documentation responsibility |
 | :---- | :---- |

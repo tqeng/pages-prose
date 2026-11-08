@@ -1,7 +1,5 @@
 # Detailed Test Cases
 
-Each case uses the nine fields required for Deliverable 2.1.
-
 | Field | Details |
 | --- | --- |
 | Test Case ID | TC-001 |
