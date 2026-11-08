@@ -4,7 +4,7 @@ Team 8's DIGT2107 community reading prototype. Discover a book, save it to a she
 
 ## Run the prototype
 
-Requires Node.js 22 or later. No installation is needed for the app or unit tests.
+Requires Node.js 22 or later. No installation is needed.
 
 ```sh
 npm start
@@ -16,38 +16,18 @@ These are demo identities, not secure accounts. Records share one browser origin
 
 ## Tests
 
-```sh
-npm test
-```
+The Deliverable 2.1 test documentation covers core functionality: eight functional requirements (FR1-FR8) and three non-functional requirements (NFR1-NFR3), traced to **10 detailed test cases**. 
 
-The 24 unit cases cover search, shelves, completion dates, progress/rating boundaries, ownership rules, discussions, spoilers, adapters and failed saves.
+## Docs
 
-For five browser checks, install Playwright, provide Chromium, start the app in another terminal, then run:
-
-```sh
-npm install --no-save --package-lock=false playwright
-npx playwright install chromium
-node tests/browser.mjs
-```
-
-Alternatively set `PLAYWRIGHT_PATH` to an existing module entry and `BROWSER_EXECUTABLE` to Chrome/Chromium. Recorded tests used Chrome on Windows through Playwright. Browser tests create fresh data, substitute 100 performance fixtures and overwrite evidence with the latest run.
-
-Recorded: **24 unit tests and five browser checks passed**. Of **44 designed cases**, 29 passed and 15 are blocked by future features or missing participant/backend prerequisites. These are case outcomes, not source-code coverage percentages. Keyboard testing is a sample with programmatic focus setup, not a full accessibility audit.
-
-## Submission artifacts
-
-- [Deliverable PDF](docs/deliverable-2-1.pdf) and [editable report](docs/deliverable-2-1.md)
 - [Test plan](docs/testing/test-plan.md)
-- [44 detailed cases](docs/testing/test-cases.md) and [structured cases](docs/testing/test-cases.json)
+- [10 detailed cases](docs/testing/test-cases.md) and [structured cases](docs/testing/test-cases.json)
 - [Traceability matrix](docs/testing/traceability.csv)
-- [Unit output](docs/testing/unit-results.tap) and [browser environment/timings](docs/testing/browser-results.json)
-- [Discovery](docs/evidence/prototype-discover.png) and [book screen](docs/evidence/prototype-book.png) screenshots
+- Prototype screenshots: [discovery screen](docs/evidence/prototype-discover.png) (TC-003) and [book screen](docs/evidence/prototype-book.png) (TC-004 to TC-008)
 
-## Structure and branches
+## Structure
 
-`src/ui.mjs` handles presentation; `src/core.mjs` handles rules; `src/storage.mjs` implements adapters; `src/catalogue.mjs` holds fixtures. `tests/` contains executable checks and `docs/` holds evidence.
-
-`main` is stable; `development` integrates ongoing work. `feature/core-reading`, `feature/testing` and `feature/deliverable-2-1` preserve coherent changes. Milestone tag: `ITR2.1`. Commits use actual work timestamps and the configured Jeffray Zhang identity. Shared history is not rewritten.
+`src/ui.mjs` handles presentation; `src/core.mjs` handles rules; `src/storage.mjs` implements adapters; `src/catalogue.mjs` holds fixtures. `docs/testing/` holds the manual test documentation.
 
 ## Scope and next work
 
