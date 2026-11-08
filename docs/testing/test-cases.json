@@ -1,22 +1,20 @@
 [
   {
     "id": "TC-001",
-    "title": "Account registration and session lifecycle",
+    "title": "Authentication and session security",
     "requirements": [
       "FR1",
-      "NFR4"
+      "NFR1"
     ],
     "preconditions": "Future authentication service; unused email; two browser sessions.",
     "steps": [
-      "Register a reader with a valid email and password.",
+      "Register a reader with valid email and password.",
       "Reject duplicate email and wrong password.",
-      "Sign in, capture the session, then sign out.",
-      "Retry a protected request with the old session."
+      "Sign in, capture session, then sign out.",
+      "Retry protected request with old session (verify invalidation)."
     ],
-    "expected": "Registration succeeds once; passwords are hashed with a dedicated password hash; invalid credentials fail; sign-out invalidates the session.",
-    "actual": "Blocked: the demo has no sign-up, password storage, or real sign-in sessions.",
-    "status": "Blocked",
-    "priority": "High"
+    "expected": "Registration succeeds; passwords securely hashed; sign-out cleanly drops session.",
+    "status": "Blocked (No backend auth yet)"
   },
   {
     "id": "TC-002",
@@ -24,784 +22,127 @@
     "requirements": [
       "FR2"
     ],
-    "preconditions": "Alice selected; fresh service and b1 available.",
     "steps": [
-      "Publish a 4-star b1 review.",
-      "Save display name \" Alice A \" and bio \" Bio \".",
-      "Read Alice profile and its reviews.",
-      "Attempt a blank display name."
+      "Publish 4-star review.",
+      "Save display name \"Alice A\" and bio \"Bio\".",
+      "Read Alice's profile and check reviews.",
+      "Attempt blank display name."
     ],
-    "expected": "Name and bio are trimmed and updated; review remains visible; blank name is rejected.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Name and bio update; review remains visible; blank name rejected.",
+    "status": "Pass"
   },
   {
     "id": "TC-003",
-    "title": "Search title or author and read details",
+    "title": "Search queries (Valid and Empty)",
     "requirements": [
       "FR3"
     ],
-    "preconditions": "Fresh catalogue with b1 Pride and Prejudice and b2 Frankenstein.",
     "steps": [
-      "Search \" PRIDE \".",
-      "Search \"shelley\".",
-      "Open b1 details."
+      "Search valid title (\"PRIDE\").",
+      "Search unmatched query (\"zzzzzz\").",
+      "Submit whitespace only."
     ],
-    "expected": "Queries are case-insensitive and trimmed; correct book returned; details show title, author and 432 pages.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Valid search returns book details. Unmatched returns empty state. Whitespace returns all catalog items.",
+    "status": "Pass"
   },
   {
     "id": "TC-004",
-    "title": "Empty and unmatched search",
+    "title": "Shelf lifecycle and privacy boundaries",
     "requirements": [
-      "FR3"
+      "FR4",
+      "NFR3"
     ],
-    "preconditions": "Five-book sample catalogue.",
     "steps": [
-      "Submit whitespace only.",
-      "Search \"zzzzzz\"."
+      "Add b1 to Want to Read.",
+      "Move to Currently Reading.",
+      "Switch to second user and remove b1."
     ],
-    "expected": "Whitespace returns all five books; unmatched query returns an empty result set; UI no-results text is checked during manual follow-up.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Only one primary status remains for User 1. User 2 removing their copy doesn't affect User 1's copy.",
+    "status": "Pass"
   },
   {
     "id": "TC-005",
-    "title": "Add and move one primary shelf record",
+    "title": "Progress calculations and validation",
     "requirements": [
-      "FR4"
+      "FR5",
+      "NFR2"
     ],
-    "preconditions": "Alice selected and b1 absent from her shelves.",
     "steps": [
-      "Add b1 as Want to Read.",
-      "Move b1 to Currently Reading.",
-      "Attempt Favourite Read as main status."
+      "Save boundaries (0, midpoint, 100%).",
+      "Attempt invalid inputs (-1, 9999, NaN, \"string\")."
     ],
-    "expected": "Exactly one record remains with Currently Reading; invalid main reading status is rejected.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Percentages calculate correctly (0, 50, 100). Invalid inputs are rejected without losing previously saved data.",
+    "status": "Pass"
   },
   {
     "id": "TC-006",
-    "title": "Completion date lifecycle",
+    "title": "Review creation, editing, and authorization",
     "requirements": [
-      "FR4"
+      "FR6",
+      "NFR1"
     ],
-    "preconditions": "Alice selected; fixed test clock 2026-11-07T18:00:00Z.",
     "steps": [
-      "Mark b1 Completed.",
-      "Inspect completedAt.",
-      "Move b1 to Want to Read."
+      "Publish 4-star review.",
+      "Edit to 4.25 stars.",
+      "Switch user and attempt to edit/delete the first user's review."
     ],
-    "expected": "Completion date equals the test clock; leaving Completed clears that date.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Owner can edit/delete successfully. Non-owner actions are strictly rejected.",
+    "status": "Pass"
   },
   {
     "id": "TC-007",
-    "title": "Remove only the current reader shelf entry",
-    "requirements": [
-      "FR4",
-      "NFR8"
-    ],
-    "preconditions": "Alice and Bob each have b1 on a shelf.",
-    "steps": [
-      "As Bob remove b1.",
-      "Read Bob shelves.",
-      "Switch to Alice and read her shelves."
-    ],
-    "expected": "Bob has no b1 entry; Alice entry is retained.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-008",
-    "title": "Custom shelf organisation",
-    "requirements": [
-      "FR4"
-    ],
-    "preconditions": "Future custom-shelf UI and service; Alice owns a b1 entry.",
-    "steps": [
-      "Create shelf \"Summer\".",
-      "Assign b1 while retaining its main status.",
-      "Rename shelf then remove the custom membership."
-    ],
-    "expected": "Custom label changes do not duplicate or erase the main status or progress.",
-    "actual": "Blocked: custom shelf creation and membership are not implemented.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-009",
-    "title": "Progress boundaries and calculation",
-    "requirements": [
-      "FR5"
-    ],
-    "preconditions": "Alice has b1 Currently Reading; total 432 pages.",
-    "steps": [
-      "Save pages 0, 216 and 432 in sequence.",
-      "Inspect percentage after each save."
-    ],
-    "expected": "All values accepted; percentages are exactly 0, 50 and 100.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-010",
-    "title": "Reject invalid progress without data loss",
-    "requirements": [
-      "FR5",
-      "NFR5"
-    ],
-    "preconditions": "Alice has b1 page 20 saved.",
-    "steps": [
-      "Attempt -1, 433, 1.5, NaN, Infinity and string \"10\" through the service.",
-      "Read the stored page."
-    ],
-    "expected": "Each invalid input is rejected and page 20 remains. UI converts valid numeric input before calling the service.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-011",
-    "title": "Unknown and zero page totals",
-    "requirements": [
-      "FR5"
-    ],
-    "preconditions": "b5 has missing pages; Alice has shelved it.",
-    "steps": [
-      "Attempt to save page 0.",
-      "Repeat with b5 total pages set to zero."
-    ],
-    "expected": "Both saves are rejected as tracking unavailable; percentage is not calculated.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-012",
-    "title": "Prompt before recording completion",
-    "requirements": [
-      "FR5",
-      "FR4"
-    ],
-    "preconditions": "Alice has b1 Currently Reading.",
-    "steps": [
-      "Save page 432.",
-      "Inspect status and completion prompt flag.",
-      "Explicitly move to Completed and repeat save."
-    ],
-    "expected": "Last-page save requests confirmation without changing status; Completed suppresses further prompts.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-013",
-    "title": "Review create edit delete and profile link",
-    "requirements": [
-      "FR6"
-    ],
-    "preconditions": "Alice selected, b1 available, no existing review.",
-    "steps": [
-      "Publish 4-star review \" Good \".",
-      "Find it on the book and profile.",
-      "Edit to 4.25 stars and \"Better\".",
-      "Delete the review."
-    ],
-    "expected": "One trimmed review is created; edits replace it; deletion removes it from book and profile.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-014",
-    "title": "Quarter-star boundaries and increments",
-    "requirements": [
-      "FR6",
-      "FR11"
-    ],
-    "preconditions": "Alice selected and b1 available.",
-    "steps": [
-      "Save every value from 0.25 to 5 in 0.25 increments.",
-      "Attempt 0, 5.25, 4.1, NaN, Infinity and string \"4\"."
-    ],
-    "expected": "All 20 valid values are accepted; every invalid value is rejected without creating a second review.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-015",
-    "title": "Only edit or delete your own review",
-    "requirements": [
-      "FR6",
-      "NFR4"
-    ],
-    "preconditions": "Alice has an existing b1 review.",
-    "steps": [
-      "Switch to Bob.",
-      "Attempt to edit Alice review by its ID.",
-      "Attempt to delete it.",
-      "Read the review."
-    ],
-    "expected": "Both operations are rejected and original text remains. This checks demo checks on who owns a record, not security with real sign-in.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-016",
     "title": "Book-specific threads and replies",
     "requirements": [
       "FR7"
     ],
-    "preconditions": "Alice selected; b1 and b2 exist; fixed test clock.",
     "steps": [
       "Create a b1 thread.",
       "Reply to its ID.",
       "Inspect b1 and b2 discussions."
     ],
     "expected": "b1 contains thread and reply with author, parent and timestamp; b2 contains neither.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "status": "Pass"
   },
   {
-    "id": "TC-017",
-    "title": "Reject invalid discussion contributions",
-    "requirements": [
-      "FR7"
-    ],
-    "preconditions": "Alice has a thread on b1.",
-    "steps": [
-      "Attempt whitespace-only post.",
-      "Reply to an absent thread.",
-      "Reply on b2 using the b1 parent ID."
-    ],
-    "expected": "Every invalid contribution fails; no extra posts are saved.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-018",
+    "id": "TC-008",
     "title": "Spoilers hidden until explicit reveal",
     "requirements": [
       "FR8"
     ],
-    "preconditions": "Alice posts b1 text \"Ending\" flagged as spoiler.",
     "steps": [
       "Read discussion without revealed IDs.",
       "Read it with the post ID explicitly revealed.",
       "Read again without that ID."
     ],
-    "expected": "Hidden view contains no spoiler text; explicit reveal returns text; a new view defaults to hidden.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Hidden view contains no spoiler text; explicit reveal returns text; new view defaults to hidden.",
+    "status": "Pass"
   },
   {
-    "id": "TC-019",
-    "title": "Page-based spoiler thresholds",
+    "id": "TC-009",
+    "title": "Render untrusted review text safely (XSS)",
     "requirements": [
-      "FR8"
-    ],
-    "preconditions": "Future threshold metadata and UI; readers at different progress points.",
-    "steps": [
-      "Flag a post at page 200 of 432.",
-      "Open as readers below and above page 200.",
-      "Explicitly reveal as the reader below page 200."
-    ],
-    "expected": "Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content.",
-    "actual": "Blocked: US8 threshold extension deferred; current FR8 boolean flag and reveal are tested in TC-018 and TC-039.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-020",
-    "title": "EPUB notes privacy and invalid files",
-    "requirements": [
-      "FR9",
-      "NFR4",
-      "NFR8"
-    ],
-    "preconditions": "Future EPUB reader; valid EPUB, corrupt EPUB and non-EPUB files; Alice and Bob.",
-    "steps": [
-      "Open valid EPUB; create, reopen and delete a passage note.",
-      "Attempt Bob access to Alice note.",
-      "Import corrupt and unsupported files."
-    ],
-    "expected": "Notes retain correct passage anchors and owner privacy; invalid files show errors without removing saved notes.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Low"
-  },
-  {
-    "id": "TC-021",
-    "title": "Date-filtered reading summaries",
-    "requirements": [
-      "FR10",
-      "NFR8"
-    ],
-    "preconditions": "Future analytics; known completion dates including date-range boundaries, genres and authors.",
-    "steps": [
-      "Select an inclusive date range.",
-      "Compare total and per-genre/per-author counts to fixtures.",
-      "Select an empty range.",
-      "Attempt Bob access to Alice summary."
-    ],
-    "expected": "Counts match boundary fixtures; empty range is zero; Bob cannot retrieve Alice summary.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Low"
-  },
-  {
-    "id": "TC-022",
-    "title": "Optional sub-ratings warnings and migration",
-    "requirements": [
-      "FR11",
-      "NFR5"
-    ],
-    "preconditions": "Future enhanced review editor; existing overall-only review.",
-    "steps": [
-      "Reopen old review.",
-      "Save without sub-ratings.",
-      "Add prose, characters and plot sub-ratings and warnings.",
-      "Reject an invalid sub-rating and reopen."
-    ],
-    "expected": "Old review remains readable; fields are optional; valid details persist; invalid save leaves the last saved version intact.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-023",
-    "title": "Buddy-read invitation and membership privacy",
-    "requirements": [
-      "FR12",
-      "NFR8"
-    ],
-    "preconditions": "Future buddy-read groups; Alice, Bob and non-member Charlie.",
-    "steps": [
-      "Alice creates b1 group and invites Bob.",
-      "Bob rejects then accepts a new invitation.",
-      "Charlie attempts direct group read/write.",
-      "Bob opens discussion after acceptance."
-    ],
-    "expected": "Rejected or unaccepted members have no access; accepted Bob can read/write; Charlie is denied.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-024",
-    "title": "Deterministic community recommendations",
-    "requirements": [
-      "FR13"
-    ],
-    "preconditions": "Future recommendation service; books with 3, 2, 2 and 0 reviews.",
-    "steps": [
-      "Request recommendations.",
-      "Verify descending review counts and alphabetical title tie-break.",
-      "Follow each book link.",
-      "Repeat with no reviews."
-    ],
-    "expected": "Correct stable order and detail links; empty activity is handled clearly.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-025",
-    "title": "Verified author application and admin decision",
-    "requirements": [
-      "FR14",
-      "NFR4"
-    ],
-    "preconditions": "Future author verification; reader, applicant and admin accounts.",
-    "steps": [
-      "Apply for a specific book.",
-      "Attempt verification as ordinary reader.",
-      "Approve as admin.",
-      "Post as the verified author."
-    ],
-    "expected": "Only admin can verify; badge is tied to the approved author/book; posts visibly identify author; failed applications do not grant a badge.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-026",
-    "title": "Follow feed without private activity leakage",
-    "requirements": [
-      "FR15",
-      "NFR8"
-    ],
-    "preconditions": "Future follow/feed service; Alice and Bob with public reviews and private shelf activity.",
-    "steps": [
-      "Alice follows Bob.",
-      "Inspect following list, suggestions and feed.",
-      "Confirm only public activity appears.",
-      "Unfollow and publish another Bob review."
-    ],
-    "expected": "Following list and eligible review feed update; private progress and shelves never appear; unfollowed future activity is excluded.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-027",
-    "title": "Report and moderate with role enforcement",
-    "requirements": [
-      "FR16",
-      "NFR4"
-    ],
-    "preconditions": "Future reports and moderation; existing review/thread; reader and admin.",
-    "steps": [
-      "Report content; verify confirmation without automatic removal.",
-      "Attempt reader access to queue.",
-      "Admin dismisses one report and removes another item.",
-      "Resolve a report whose content was already removed."
-    ],
-    "expected": "Reader queue access denied; resolution action, admin and timestamp recorded; removed content hidden; already-removed case handled.",
-    "actual": "Blocked: this feature has not been built yet.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-028",
-    "title": "Measure 100-book browser performance",
-    "requirements": [
+      "FR6",
       "NFR1"
     ],
-    "preconditions": "Fresh local browser; 100 generated book fixtures; one selected reader; fixed viewport.",
     "steps": [
-      "Run 20 title searches.",
-      "Run 20 alternating shelf-status saves.",
-      "Time submission through DOM update and two animation frames.",
-      "Record environment and all timings."
+      "Save review text containing an injected script.",
+      "Inspect rendered DOM and window execution marker."
     ],
-    "expected": "At least 19 of 20 searches AND 19 of 20 shelf updates complete within 2,000 ms.",
-    "actual": "With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms.",
-    "status": "Pass",
-    "priority": "High"
+    "expected": "Injected script tags are rendered literally; browser execution marker is never fired.",
+    "status": "Pass"
   },
   {
-    "id": "TC-029",
-    "title": "First-time usability and action count",
+    "id": "TC-010",
+    "title": "Data persistence and error handling",
     "requirements": [
       "NFR2"
     ],
-    "preconditions": "Five first-time participants, fresh demo data and a timer; no coaching.",
     "steps": [
-      "Give only: \"Find Frankenstein, add it, then mark Currently Reading\".",
-      "Count actions from book details to shelf addition.",
-      "Record completion time and errors for each participant."
+      "Save user data (shelf, page, review).",
+      "Restart/Reopen service from stored JSON.",
+      "Inject simulated \"Disk Full\" save error."
     ],
-    "expected": "Shelf addition takes at most three actions; at least four of five participants finish the full task within three minutes.",
-    "actual": "Blocked: five first-time participants have not been recruited; no user-study results claimed.",
-    "status": "Blocked",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-030",
-    "title": "Keyboard access labels and focus sample",
-    "requirements": [
-      "NFR3"
-    ],
-    "preconditions": "Browser with Alice selected and fresh interactive page.",
-    "steps": [
-      "Inspect discovery input labels.",
-      "Focus search once, then type and use Tab/Enter to open Frankenstein.",
-      "Use keyboard after setting focus to shelf, progress and review controls.",
-      "Inspect focus outline and textual feedback."
-    ],
-    "expected": "Sample operations work without mouse clicks; discovery controls have labels; focus is visible and status/error text is readable. Full sequential-navigation and screen-reader audit remains required.",
-    "actual": "Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.",
-    "status": "Pass",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-031",
-    "title": "Check real sign-in and access rules",
-    "requirements": [
-      "NFR4",
-      "FR1",
-      "FR2",
-      "FR4",
-      "FR6",
-      "FR9"
-    ],
-    "preconditions": "Future server-side sign-in; two accounts; password database and ended session fixtures.",
-    "steps": [
-      "Inspect password hashes.",
-      "Use Bob credentials to alter Alice profile, shelf, review and note by ID.",
-      "Sign out Alice and replay the old session."
-    ],
-    "expected": "Every attempt to change another user's data and request using a session that has ended is denied server-side; passwords use a a password-hashing tool designed to store passwords safely.",
-    "actual": "Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements.",
-    "status": "Blocked",
-    "priority": "High"
-  },
-  {
-    "id": "TC-032",
-    "title": "Keep saved data when the app reopens",
-    "requirements": [
-      "NFR5",
-      "FR2",
-      "FR4",
-      "FR5",
-      "FR6",
-      "FR7"
-    ],
-    "preconditions": "Map-backed test version of browser storage; fresh service.",
-    "steps": [
-      "Save profile, shelf, page, review and discussion.",
-      "Construct a new service using the same stored JSON.",
-      "Read each record."
-    ],
-    "expected": "All saved values remain. TC-039 separately verifies an actual browser reload.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-033",
-    "title": "Failed saves keep existing data",
-    "requirements": [
-      "NFR5"
-    ],
-    "preconditions": "MemoryStore with one saved shelf; inject save exception \"Disk full\".",
-    "steps": [
-      "Try changing shelf, progress, removing entry, publishing review/post and editing profile.",
-      "After each error compare service state and adapter state to original."
-    ],
-    "expected": "Every operation throws; neither last saved state nor in-memory application state changes.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-034",
-    "title": "Change storage without changing the screens",
-    "requirements": [
-      "NFR6"
-    ],
-    "preconditions": "MemoryStore and test version of BrowserStore implementing load/save.",
-    "steps": [
-      "Run identical search, shelf and progress assertions with each adapter.",
-      "Review UI imports and service dependency boundaries."
-    ],
-    "expected": "Same application contract works with both adapters; screens use ReadingService methods; no direct data reads/writes in screen handlers. UI composition still selects an adapter.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "Medium"
-  },
-  {
-    "id": "TC-035",
-    "title": "Future test with many books and users",
-    "requirements": [
-      "NFR7"
-    ],
-    "preconditions": "Future deployed persistent service; 10,000 books; 50 concurrent authenticated users; recorded hardware.",
-    "steps": [
-      "Run mixed search and shelf-update workload for five minutes.",
-      "Measure each action from the user's action to the visible result.",
-      "Calculate fraction within three seconds and error rate."
-    ],
-    "expected": "At least 95% of actions finish within three seconds and error rate is below 1%; publish hardware, workload and raw measurements.",
-    "actual": "Blocked: persistent multi-user service does not exist; local performance timings cannot validate this target.",
-    "status": "Blocked",
-    "priority": "Low"
-  },
-  {
-    "id": "TC-036",
-    "title": "Private records cannot be retrieved by another account",
-    "requirements": [
-      "NFR8",
-      "FR4",
-      "FR5",
-      "FR9",
-      "FR10",
-      "FR12"
-    ],
-    "preconditions": "Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group.",
-    "steps": [
-      "As Bob request each Alice resource by direct ID and list endpoints.",
-      "Attempt unaccepted group discussion reads.",
-      "Verify public profile, review and forum remain accessible."
-    ],
-    "expected": "All access to private records is denied, not just hidden in UI; public resources remain visible.",
-    "actual": "Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient.",
-    "status": "Blocked",
-    "priority": "High"
-  },
-  {
-    "id": "TC-037",
-    "title": "Render untrusted review text safely",
-    "requirements": [
-      "FR6",
-      "NFR4"
-    ],
-    "preconditions": "Browser demo with Alice selected and b1 details.",
-    "steps": [
-      "Save review text <img src=x onerror=\"window.xssExecuted=true\">.",
-      "Inspect rendered DOM and window execution marker."
-    ],
-    "expected": "Text displays literally; no injected image or script executes. This is one rendering check, not a complete security audit.",
-    "actual": "Review payload rendered as literal text; no image element or script execution.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-038",
-    "title": "Guest access boundary",
-    "requirements": [
-      "FR1",
-      "FR2",
-      "FR3",
-      "FR4",
-      "FR5",
-      "FR6",
-      "FR7"
-    ],
-    "preconditions": "Fresh service signed out.",
-    "steps": [
-      "Search and read public reviews.",
-      "Attempt private shelf access and each profile/shelf/progress/review/post mutation."
-    ],
-    "expected": "Public reads work; all listed operations requiring a selected reader are rejected. Real authentication remains deferred.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-039",
-    "title": "Browser reading and discussion journey",
-    "requirements": [
-      "FR3",
-      "FR4",
-      "FR5",
-      "FR6",
-      "FR7",
-      "FR8",
-      "NFR5"
-    ],
-    "preconditions": "Fresh browser using the five-book catalogue; Alice and Bob demo identities.",
-    "steps": [
-      "Search Austen and open book.",
-      "Add, move, reach final page and confirm Completed.",
-      "Save 4.25-star review; post spoiler thread and reply.",
-      "Reveal spoiler then switch to Bob.",
-      "Reload, select Alice and inspect shelf."
-    ],
-    "expected": "Workflow renders correct data; spoiler text absent before reveal and hidden again after reader switch; Bob shelves empty; Alice Completed survives reload; no page errors.",
-    "actual": "Search, add, move, progress prompt, review, spoiler reveal, reply, reader isolation and real page reload passed; two screenshots saved; no page errors.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-040",
-    "title": "Public profile review and discussion visibility",
-    "requirements": [
-      "FR2",
-      "FR6",
-      "FR7",
-      "NFR8"
-    ],
-    "preconditions": "Alice selected in fresh service.",
-    "steps": [
-      "Publish review and ordinary post.",
-      "Sign out and read book reviews, Alice public profile and discussion."
-    ],
-    "expected": "All community-visible content remains readable; no private shelves are included in the public profile object.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-041",
-    "title": "Browser save error and truthful feedback",
-    "requirements": [
-      "NFR5"
-    ],
-    "preconditions": "Browser has a saved Completed entry; inject localStorage.setItem failure.",
-    "steps": [
-      "Try changing status to Want to Read.",
-      "Inspect message.",
-      "Restore storage and reopen My shelves."
-    ],
-    "expected": "Error text appears instead of success; last saved Completed status remains.",
-    "actual": "Failed browser save displayed an error and retained Completed; no success message.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-042",
-    "title": "Reject unknown resources and unshelved progress",
-    "requirements": [
-      "FR3",
-      "FR4",
-      "FR5",
-      "FR6",
-      "FR7"
-    ],
-    "preconditions": "Alice selected with no shelves.",
-    "steps": [
-      "Request absent book details.",
-      "Try shelf, review and thread with absent book ID.",
-      "Update b1 progress before shelving it."
-    ],
-    "expected": "Every invalid operation is rejected; no shelf records are created.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-043",
-    "title": "Demo reading-list separation",
-    "requirements": [
-      "FR4",
-      "FR5",
-      "NFR8"
-    ],
-    "preconditions": "Alice selected in fresh service.",
-    "steps": [
-      "Alice shelves b1.",
-      "Switch to Bob and try shelves(\"alice\").",
-      "Bob shelves b2.",
-      "Switch back to Alice."
-    ],
-    "expected": "Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 checking.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "High"
-  },
-  {
-    "id": "TC-044",
-    "title": "Completion date remains stable on repeat saves",
-    "requirements": [
-      "FR4"
-    ],
-    "preconditions": "Alice selected; controlled clock can advance one day.",
-    "steps": [
-      "Complete b1.",
-      "Advance clock and save Completed again.",
-      "Move away from Completed then complete again."
-    ],
-    "expected": "Repeated same-status save preserves first date; a later new completion records the new date.",
-    "actual": "Passed. See this test's result in unit-results.tap.",
-    "status": "Pass",
-    "priority": "Medium"
+    "expected": "Saved data survives reboot. Errors throw cleanly but do not corrupt in-memory or previously saved disk state.",
+    "status": "Pass"
   }
 ]

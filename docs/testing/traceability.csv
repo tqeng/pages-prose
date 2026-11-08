@@ -1,157 +1,22 @@
 Requirement ID,Requirement Description,Test Case ID,Test Case Description,Coverage
-FR1,"Account registration, sign-in and sign-out with session ending.
-Use case: UC-11","TC-001
-TC-031
-TC-038","TC-001: Account registration and session lifecycle
-TC-031: Check real sign-in and access rules
-TC-038: Guest access boundary",Uncovered
-FR2,"View public profiles and edit own display name and description.
-Use case: UC-11","TC-002
-TC-031
-TC-032
-TC-040","TC-002: Edit profile and retain community reviews
-TC-031: Check real sign-in and access rules
-TC-032: Keep saved data when the app reopens
-TC-040: Public profile review and discussion visibility",Partially Covered
-FR3,"Search title/author and view book details, including a clear empty result.
-Use case: UC-01","TC-003
-TC-004
-TC-039
-TC-042","TC-003: Search title or author and read details
-TC-004: Empty and unmatched search
-TC-039: Browser reading and discussion journey
-TC-042: Reject unknown resources and unshelved progress",Fully Covered
-FR4,"Keep one main reading status per reader and book. Add, move, and remove books; set or clear completion dates; support custom shelves.
-Use case: UC-02","TC-005
+FR1,"Account registration, sign-in and sign-out with session ending.",TC-001,TC-001: Authentication and session security,Uncovered
+FR2,View public profiles and edit your own display name and description.,"TC-002
+TC-010","TC-002: Edit profile and retain community reviews
+TC-010: Data persistence and error handling",Partially Covered
+FR3,"Search title/author and view book details, including a clear empty result.",TC-003,TC-003: Search queries (Valid and Empty),Fully Covered
+FR4,"Keep one main reading status per reader/book. Add, move, remove books.",TC-004,TC-004: Shelf lifecycle and privacy boundaries,Partially Covered
+FR5,Accept whole pages 0 to known positive total; disable unknown totals.,TC-005,TC-005: Progress calculations and validation,Fully Covered
+FR6,"Publish, browse, edit and delete own ratings/reviews.","TC-006
+TC-009","TC-006: Review creation, editing, and authorization
+TC-009: Render untrusted review text safely (XSS)",Partially Covered
+FR7,Book-specific threads/replies with display name and posting time.,TC-007,TC-007: Book-specific threads and replies,Fully Covered
+FR8,Contributors flag spoiler content; hide text until explicit reveal.,TC-008,TC-008: Spoilers hidden until explicit reveal,Fully Covered
+NFR1,Reject changes to other user profiles; valid sessions.,"TC-001
 TC-006
-TC-007
-TC-008
-TC-012
-TC-031
-TC-039
-TC-043
-TC-044","TC-005: Add and move one primary shelf record
-TC-006: Completion date lifecycle
-TC-007: Remove only the current reader shelf entry
-TC-008: Custom shelf organisation
-TC-012: Prompt before recording completion
-TC-031: Check real sign-in and access rules
-TC-039: Browser reading and discussion journey
-TC-043: Demo reading-list separation
-TC-044: Completion date remains stable on repeat saves",Partially Covered
-FR5,"Accept whole pages 0 to known positive total; calculate page/total x 100; disable unknown totals and prompt for completion at 100%.
-Use case: UC-03","TC-009
-TC-010
-TC-011
-TC-012
-TC-039
-TC-042
-TC-043","TC-009: Progress boundaries and calculation
-TC-010: Reject invalid progress without data loss
-TC-011: Unknown and zero page totals
-TC-012: Prompt before recording completion
-TC-039: Browser reading and discussion journey
-TC-042: Reject unknown resources and unshelved progress
-TC-043: Demo reading-list separation",Fully Covered
-FR6,"Publish, browse, edit and delete own ratings/reviews; show review on book and profile.
-Use cases: UC-04, UC-05","TC-013
-TC-014
-TC-015
-TC-031
-TC-037
-TC-039
-TC-040
-TC-042","TC-013: Review create edit delete and profile link
-TC-014: Quarter-star boundaries and increments
-TC-015: Only edit or delete your own review
-TC-031: Check real sign-in and access rules
-TC-037: Render untrusted review text safely
-TC-039: Browser reading and discussion journey
-TC-040: Public profile review and discussion visibility
-TC-042: Reject unknown resources and unshelved progress",Partially Covered
-FR7,"Book-specific threads/replies with contributor display name and posting time.
-Use case: UC-07","TC-016
-TC-017
-TC-039
-TC-040
-TC-042","TC-016: Book-specific threads and replies
-TC-017: Reject invalid discussion contributions
-TC-039: Browser reading and discussion journey
-TC-040: Public profile review and discussion visibility
-TC-042: Reject unknown resources and unshelved progress",Fully Covered
-FR8,"Contributors flag spoiler content; hide text until deliberate reveal. Page/percentage threshold extension remains in US8 backlog.
-Use case: UC-07","TC-018
-TC-019
-TC-039","TC-018: Spoilers hidden until explicit reveal
-TC-019: Page-based spoiler thresholds
-TC-039: Browser reading and discussion journey",Fully Covered
-FR9,"Read supported EPUBs; owner-only passage notes with create/revisit/delete; safe errors for unreadable files.
-Use case: UC-12","TC-020
-TC-031
-TC-036","TC-020: EPUB notes privacy and invalid files
-TC-031: Check real sign-in and access rules
-TC-036: Private records cannot be retrieved by another account",Uncovered
-FR10,"Private date-filtered summaries of completed books, grouped by genre and author.
-Use case: UC-09","TC-021
-TC-036","TC-021: Date-filtered reading summaries
-TC-036: Private records cannot be retrieved by another account",Uncovered
-FR11,"Quarter-star overall rating; optional prose/characters/plot sub-ratings and content warnings; preserve old reviews.
-Use cases: UC-04, UC-05","TC-014
-TC-022","TC-014: Quarter-star boundaries and increments
-TC-022: Optional sub-ratings warnings and migration",Partially Covered
-FR12,"Book-specific buddy groups with invitations, accept/reject and accepted-member-only discussion.
-Use case: UC-13","TC-023
-TC-036","TC-023: Buddy-read invitation and membership privacy
-TC-036: Private records cannot be retrieved by another account",Uncovered
-FR13,"Suggest books with the most reviews first. If review counts tie, sort by title. Each suggestion opens its book details.
-Use case: UC-14",TC-024,TC-024: Deterministic community recommendations,Uncovered
-FR14,"Allow author applications for specific books; admin approves verification and labelled author participation.
-Use case: UC-15",TC-025,TC-025: Verified author application and admin decision,Uncovered
-FR15,"Follow/unfollow readers; suggestions and feed expose only community-visible activity.
-Use case: UC-06",TC-026,TC-026: Follow feed without private activity leakage,Uncovered
-FR16,"Readers can report content. Only admins can review reports, dismiss them, remove content, or issue warnings. Each decision is recorded.
-Use cases: UC-08, UC-10",TC-027,TC-027: Report and moderate with role enforcement,Uncovered
-NFR1,"With 100 sample books and one active user, at least 19/20 searches and 19/20 shelf updates finish within 2 seconds from submission to displayed result.",TC-028,TC-028: Measure 100-book browser performance,Not required
-NFR2,"Add from details in at most three actions; at least 4/5 first-time readers complete search, add and status change within 3 minutes with only a task prompt.",TC-029,TC-029: First-time usability and action count,Not required
-NFR3,"Core controls have visible labels or accessible names, keyboard operation and visible focus; core workflow is mouse-free; status/errors do not rely on colour alone.",TC-030,TC-030: Keyboard access labels and focus sample,Not required
-NFR4,"Authenticated operations reject changes to another user profile, shelf, review or note; dedicated password hashing; sign-out invalidates session.","TC-001
-TC-015
-TC-020
-TC-025
-TC-027
-TC-031
-TC-037","TC-001: Account registration and session lifecycle
-TC-015: Only edit or delete your own review
-TC-020: EPUB notes privacy and invalid files
-TC-025: Verified author application and admin decision
-TC-027: Report and moderate with role enforcement
-TC-031: Check real sign-in and access rules
-TC-037: Render untrusted review text safely",Not required
-NFR5,"Saved personal records survive reopening; failed save shows error, retains last saved data and never claims success. In-memory adapter is test-only.","TC-010
-TC-022
-TC-032
-TC-033
-TC-039
-TC-041","TC-010: Reject invalid progress without data loss
-TC-022: Optional sub-ratings warnings and migration
-TC-032: Keep saved data when the app reopens
-TC-033: Failed saves keep existing data
-TC-039: Browser reading and discussion journey
-TC-041: Browser save error and truthful feedback",Not required
-NFR6,"Separate presentation, application rules and storage. Adapter replacement requires no changes to search or shelf screens; verify same checks and dependencies.",TC-034,TC-034: Change storage without changing the screens,Not required
-NFR7,"Future persistent service: 10,000 books, 50 concurrent users, five-minute trial; at least 95% of searches/updates within 3 seconds and error rate below 1%; record hardware/workload.",TC-035,TC-035: Future test with many books and users,Not required
-NFR8,"Shelves, progress, EPUBs, notes and summaries are owner-private; profiles/reviews/public forum community-visible; groups accepted-member-only; verify second-account retrieval.","TC-007
-TC-020
-TC-021
-TC-023
-TC-026
-TC-036
-TC-040
-TC-043","TC-007: Remove only the current reader shelf entry
-TC-020: EPUB notes privacy and invalid files
-TC-021: Date-filtered reading summaries
-TC-023: Buddy-read invitation and membership privacy
-TC-026: Follow feed without private activity leakage
-TC-036: Private records cannot be retrieved by another account
-TC-040: Public profile review and discussion visibility
-TC-043: Demo reading-list separation",Not required
+TC-009","TC-001: Authentication and session security
+TC-006: Review creation, editing, and authorization
+TC-009: Render untrusted review text safely (XSS)",Not required
+NFR2,Saved records survive reopening; errors don't erase data.,"TC-005
+TC-010","TC-005: Progress calculations and validation
+TC-010: Data persistence and error handling",Not required
+NFR3,"Strict owner privacy for shelves, progress, etc.",TC-004,TC-004: Shelf lifecycle and privacy boundaries,Not required
