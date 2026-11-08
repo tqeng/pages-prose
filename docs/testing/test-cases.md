@@ -1,859 +1,1103 @@
 # Detailed Test Cases
 
-44 test cases. Results are recorded below and in the saved test output.
+Each case uses the nine fields required for Deliverable 2.1.
 
 
 ## TC-001 Account registration and session lifecycle
 
-Requirements: FR1, NFR4
+| Field | Details |
 
-Preconditions: Future authentication service; unused email; two browser sessions.
+| --- | --- |
 
-1. Register a reader with a valid email and password.
+| Test Case ID | TC-001 |
 
-2. Reject duplicate email and wrong password.
+| Title | Account registration and session lifecycle |
 
-3. Sign in, capture the session, then sign out.
+| Related Requirement ID(s) | FR1, NFR4 |
 
-4. Retry a protected request with the old session.
+| Preconditions | Future authentication service; unused email; two browser sessions. |
 
-Expected: Registration succeeds once; passwords are hashed with a dedicated password hash; invalid credentials fail; sign-out invalidates the session.
+| Steps | 1. Register a reader with a valid email and password.<br>2. Reject duplicate email and wrong password.<br>3. Sign in, capture the session, then sign out.<br>4. Retry a protected request with the old session. |
 
-Actual: Blocked: the demo has no sign-up, password storage, or real sign-in sessions.
+| Expected Result | Registration succeeds once; passwords are hashed with a dedicated password hash; invalid credentials fail; sign-out invalidates the session. |
 
-Status: Blocked; priority: High
+| Actual Result | Blocked: the demo has no sign-up, password storage, or real sign-in sessions. |
+
+| Status | Blocked |
+
+| Priority | High |
 
 
 ## TC-002 Edit profile and retain community reviews
 
-Requirements: FR2
+| Field | Details |
 
-Preconditions: Alice selected; fresh service and b1 available.
+| --- | --- |
 
-1. Publish a 4-star b1 review.
+| Test Case ID | TC-002 |
 
-2. Save display name " Alice A " and bio " Bio ".
+| Title | Edit profile and retain community reviews |
 
-3. Read Alice profile and its reviews.
+| Related Requirement ID(s) | FR2 |
 
-4. Attempt a blank display name.
+| Preconditions | Alice selected; fresh service and b1 available. |
 
-Expected: Name and bio are trimmed and updated; review remains visible; blank name is rejected.
+| Steps | 1. Publish a 4-star b1 review.<br>2. Save display name &quot; Alice A &quot; and bio &quot; Bio &quot;.<br>3. Read Alice profile and its reviews.<br>4. Attempt a blank display name. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Expected Result | Name and bio are trimmed and updated; review remains visible; blank name is rejected. |
 
-Status: Pass; priority: High
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-003 Search title or author and read details
 
-Requirements: FR3
+| Field | Details |
 
-Preconditions: Fresh catalogue with b1 Pride and Prejudice and b2 Frankenstein.
+| --- | --- |
 
-1. Search " PRIDE ".
+| Test Case ID | TC-003 |
 
-2. Search "shelley".
+| Title | Search title or author and read details |
 
-3. Open b1 details.
+| Related Requirement ID(s) | FR3 |
 
-Expected: Queries are case-insensitive and trimmed; correct book returned; details show title, author and 432 pages.
+| Preconditions | Fresh catalogue with b1 Pride and Prejudice and b2 Frankenstein. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Search &quot; PRIDE &quot;.<br>2. Search &quot;shelley&quot;.<br>3. Open b1 details. |
 
-Status: Pass; priority: High
+| Expected Result | Queries are case-insensitive and trimmed; correct book returned; details show title, author and 432 pages. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-004 Empty and unmatched search
 
-Requirements: FR3
+| Field | Details |
 
-Preconditions: Five-book sample catalogue.
+| --- | --- |
 
-1. Submit whitespace only.
+| Test Case ID | TC-004 |
 
-2. Search "zzzzzz".
+| Title | Empty and unmatched search |
 
-Expected: Whitespace returns all five books; unmatched query returns an empty result set; UI no-results text is checked during manual follow-up.
+| Related Requirement ID(s) | FR3 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Five-book sample catalogue. |
 
-Status: Pass; priority: High
+| Steps | 1. Submit whitespace only.<br>2. Search &quot;zzzzzz&quot;. |
+
+| Expected Result | Whitespace returns all five books; unmatched query returns an empty result set; UI no-results text is checked during manual follow-up. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-005 Add and move one primary shelf record
 
-Requirements: FR4
+| Field | Details |
 
-Preconditions: Alice selected and b1 absent from her shelves.
+| --- | --- |
 
-1. Add b1 as Want to Read.
+| Test Case ID | TC-005 |
 
-2. Move b1 to Currently Reading.
+| Title | Add and move one primary shelf record |
 
-3. Attempt Favourite Read as main status.
+| Related Requirement ID(s) | FR4 |
 
-Expected: Exactly one record remains with Currently Reading; invalid main reading status is rejected.
+| Preconditions | Alice selected and b1 absent from her shelves. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Add b1 as Want to Read.<br>2. Move b1 to Currently Reading.<br>3. Attempt Favourite Read as main status. |
 
-Status: Pass; priority: High
+| Expected Result | Exactly one record remains with Currently Reading; invalid main reading status is rejected. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-006 Completion date lifecycle
 
-Requirements: FR4
+| Field | Details |
 
-Preconditions: Alice selected; fixed test clock 2026-11-07T18:00:00Z.
+| --- | --- |
 
-1. Mark b1 Completed.
+| Test Case ID | TC-006 |
 
-2. Inspect completedAt.
+| Title | Completion date lifecycle |
 
-3. Move b1 to Want to Read.
+| Related Requirement ID(s) | FR4 |
 
-Expected: Completion date equals the test clock; leaving Completed clears that date.
+| Preconditions | Alice selected; fixed test clock 2026-11-07T18:00:00Z. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Mark b1 Completed.<br>2. Inspect completedAt.<br>3. Move b1 to Want to Read. |
 
-Status: Pass; priority: High
+| Expected Result | Completion date equals the test clock; leaving Completed clears that date. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-007 Remove only the current reader shelf entry
 
-Requirements: FR4, NFR8
+| Field | Details |
 
-Preconditions: Alice and Bob each have b1 on a shelf.
+| --- | --- |
 
-1. As Bob remove b1.
+| Test Case ID | TC-007 |
 
-2. Read Bob shelves.
+| Title | Remove only the current reader shelf entry |
 
-3. Switch to Alice and read her shelves.
+| Related Requirement ID(s) | FR4, NFR8 |
 
-Expected: Bob has no b1 entry; Alice entry is retained.
+| Preconditions | Alice and Bob each have b1 on a shelf. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. As Bob remove b1.<br>2. Read Bob shelves.<br>3. Switch to Alice and read her shelves. |
 
-Status: Pass; priority: High
+| Expected Result | Bob has no b1 entry; Alice entry is retained. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-008 Custom shelf organisation
 
-Requirements: FR4
+| Field | Details |
 
-Preconditions: Future custom-shelf UI and service; Alice owns a b1 entry.
+| --- | --- |
 
-1. Create shelf "Summer".
+| Test Case ID | TC-008 |
 
-2. Assign b1 while retaining its main status.
+| Title | Custom shelf organisation |
 
-3. Rename shelf then remove the custom membership.
+| Related Requirement ID(s) | FR4 |
 
-Expected: Custom label changes do not duplicate or erase the main status or progress.
+| Preconditions | Future custom-shelf UI and service; Alice owns a b1 entry. |
 
-Actual: Blocked: custom shelf creation and membership are not implemented.
+| Steps | 1. Create shelf &quot;Summer&quot;.<br>2. Assign b1 while retaining its main status.<br>3. Rename shelf then remove the custom membership. |
 
-Status: Blocked; priority: Medium
+| Expected Result | Custom label changes do not duplicate or erase the main status or progress. |
+
+| Actual Result | Blocked: custom shelf creation and membership are not implemented. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-009 Progress boundaries and calculation
 
-Requirements: FR5
+| Field | Details |
 
-Preconditions: Alice has b1 Currently Reading; total 432 pages.
+| --- | --- |
 
-1. Save pages 0, 216 and 432 in sequence.
+| Test Case ID | TC-009 |
 
-2. Inspect percentage after each save.
+| Title | Progress boundaries and calculation |
 
-Expected: All values accepted; percentages are exactly 0, 50 and 100.
+| Related Requirement ID(s) | FR5 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Alice has b1 Currently Reading; total 432 pages. |
 
-Status: Pass; priority: High
+| Steps | 1. Save pages 0, 216 and 432 in sequence.<br>2. Inspect percentage after each save. |
+
+| Expected Result | All values accepted; percentages are exactly 0, 50 and 100. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-010 Reject invalid progress without data loss
 
-Requirements: FR5, NFR5
+| Field | Details |
 
-Preconditions: Alice has b1 page 20 saved.
+| --- | --- |
 
-1. Attempt -1, 433, 1.5, NaN, Infinity and string "10" through the service.
+| Test Case ID | TC-010 |
 
-2. Read the stored page.
+| Title | Reject invalid progress without data loss |
 
-Expected: Each invalid input is rejected and page 20 remains. UI converts valid numeric input before calling the service.
+| Related Requirement ID(s) | FR5, NFR5 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Alice has b1 page 20 saved. |
 
-Status: Pass; priority: High
+| Steps | 1. Attempt -1, 433, 1.5, NaN, Infinity and string &quot;10&quot; through the service.<br>2. Read the stored page. |
+
+| Expected Result | Each invalid input is rejected and page 20 remains. UI converts valid numeric input before calling the service. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-011 Unknown and zero page totals
 
-Requirements: FR5
+| Field | Details |
 
-Preconditions: b5 has missing pages; Alice has shelved it.
+| --- | --- |
 
-1. Attempt to save page
+| Test Case ID | TC-011 |
 
-2. 
+| Title | Unknown and zero page totals |
 
-3. Repeat with b5 total pages set to zero.
+| Related Requirement ID(s) | FR5 |
 
-Expected: Both saves are rejected as tracking unavailable; percentage is not calculated.
+| Preconditions | b5 has missing pages; Alice has shelved it. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Attempt to save page 0.<br>2. Repeat with b5 total pages set to zero. |
 
-Status: Pass; priority: High
+| Expected Result | Both saves are rejected as tracking unavailable; percentage is not calculated. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-012 Prompt before recording completion
 
-Requirements: FR5, FR4
+| Field | Details |
 
-Preconditions: Alice has b1 Currently Reading.
+| --- | --- |
 
-1. Save page
+| Test Case ID | TC-012 |
 
-2. 
+| Title | Prompt before recording completion |
 
-3. Inspect status and completion prompt flag.
+| Related Requirement ID(s) | FR5, FR4 |
 
-4. Explicitly move to Completed and repeat save.
+| Preconditions | Alice has b1 Currently Reading. |
 
-Expected: Last-page save requests confirmation without changing status; Completed suppresses further prompts.
+| Steps | 1. Save page 432.<br>2. Inspect status and completion prompt flag.<br>3. Explicitly move to Completed and repeat save. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Expected Result | Last-page save requests confirmation without changing status; Completed suppresses further prompts. |
 
-Status: Pass; priority: High
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-013 Review create edit delete and profile link
 
-Requirements: FR6
+| Field | Details |
 
-Preconditions: Alice selected, b1 available, no existing review.
+| --- | --- |
 
-1. Publish 4-star review " Good ".
+| Test Case ID | TC-013 |
 
-2. Find it on the book and profile.
+| Title | Review create edit delete and profile link |
 
-3. Edit to 4.25 stars and "Better".
+| Related Requirement ID(s) | FR6 |
 
-4. Delete the review.
+| Preconditions | Alice selected, b1 available, no existing review. |
 
-Expected: One trimmed review is created; edits replace it; deletion removes it from book and profile.
+| Steps | 1. Publish 4-star review &quot; Good &quot;.<br>2. Find it on the book and profile.<br>3. Edit to 4.25 stars and &quot;Better&quot;.<br>4. Delete the review. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Expected Result | One trimmed review is created; edits replace it; deletion removes it from book and profile. |
 
-Status: Pass; priority: High
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-014 Quarter-star boundaries and increments
 
-Requirements: FR6, FR11
+| Field | Details |
 
-Preconditions: Alice selected and b1 available.
+| --- | --- |
 
-1. Save every value from 0.25 to 5 in 0.25 increments.
+| Test Case ID | TC-014 |
 
-2. Attempt 0, 5.25, 4.1, NaN, Infinity and string "4".
+| Title | Quarter-star boundaries and increments |
 
-Expected: All 20 valid values are accepted; every invalid value is rejected without creating a second review.
+| Related Requirement ID(s) | FR6, FR11 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Alice selected and b1 available. |
 
-Status: Pass; priority: High
+| Steps | 1. Save every value from 0.25 to 5 in 0.25 increments.<br>2. Attempt 0, 5.25, 4.1, NaN, Infinity and string &quot;4&quot;. |
+
+| Expected Result | All 20 valid values are accepted; every invalid value is rejected without creating a second review. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-015 Only edit or delete your own review
 
-Requirements: FR6, NFR4
+| Field | Details |
 
-Preconditions: Alice has an existing b1 review.
+| --- | --- |
 
-1. Switch to Bob.
+| Test Case ID | TC-015 |
 
-2. Attempt to edit Alice review by its ID.
+| Title | Only edit or delete your own review |
 
-3. Attempt to delete it.
+| Related Requirement ID(s) | FR6, NFR4 |
 
-4. Read the review.
+| Preconditions | Alice has an existing b1 review. |
 
-Expected: Both operations are rejected and original text remains. This checks demo checks on who owns a record, not security with real sign-in.
+| Steps | 1. Switch to Bob.<br>2. Attempt to edit Alice review by its ID.<br>3. Attempt to delete it.<br>4. Read the review. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Expected Result | Both operations are rejected and original text remains. This checks demo checks on who owns a record, not security with real sign-in. |
 
-Status: Pass; priority: High
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-016 Book-specific threads and replies
 
-Requirements: FR7
+| Field | Details |
 
-Preconditions: Alice selected; b1 and b2 exist; fixed test clock.
+| --- | --- |
 
-1. Create a b1 thread.
+| Test Case ID | TC-016 |
 
-2. Reply to its ID.
+| Title | Book-specific threads and replies |
 
-3. Inspect b1 and b2 discussions.
+| Related Requirement ID(s) | FR7 |
 
-Expected: b1 contains thread and reply with author, parent and timestamp; b2 contains neither.
+| Preconditions | Alice selected; b1 and b2 exist; fixed test clock. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Create a b1 thread.<br>2. Reply to its ID.<br>3. Inspect b1 and b2 discussions. |
 
-Status: Pass; priority: High
+| Expected Result | b1 contains thread and reply with author, parent and timestamp; b2 contains neither. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-017 Reject invalid discussion contributions
 
-Requirements: FR7
+| Field | Details |
 
-Preconditions: Alice has a thread on b1.
+| --- | --- |
 
-1. Attempt whitespace-only post.
+| Test Case ID | TC-017 |
 
-2. Reply to an absent thread.
+| Title | Reject invalid discussion contributions |
 
-3. Reply on b2 using the b1 parent ID.
+| Related Requirement ID(s) | FR7 |
 
-Expected: Every invalid contribution fails; no extra posts are saved.
+| Preconditions | Alice has a thread on b1. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Attempt whitespace-only post.<br>2. Reply to an absent thread.<br>3. Reply on b2 using the b1 parent ID. |
 
-Status: Pass; priority: High
+| Expected Result | Every invalid contribution fails; no extra posts are saved. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-018 Spoilers hidden until explicit reveal
 
-Requirements: FR8
+| Field | Details |
 
-Preconditions: Alice posts b1 text "Ending" flagged as spoiler.
+| --- | --- |
 
-1. Read discussion without revealed IDs.
+| Test Case ID | TC-018 |
 
-2. Read it with the post ID explicitly revealed.
+| Title | Spoilers hidden until explicit reveal |
 
-3. Read again without that ID.
+| Related Requirement ID(s) | FR8 |
 
-Expected: Hidden view contains no spoiler text; explicit reveal returns text; a new view defaults to hidden.
+| Preconditions | Alice posts b1 text &quot;Ending&quot; flagged as spoiler. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Read discussion without revealed IDs.<br>2. Read it with the post ID explicitly revealed.<br>3. Read again without that ID. |
 
-Status: Pass; priority: High
+| Expected Result | Hidden view contains no spoiler text; explicit reveal returns text; a new view defaults to hidden. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-019 Page-based spoiler thresholds
 
-Requirements: FR8
+| Field | Details |
 
-Preconditions: Future threshold metadata and UI; readers at different progress points.
+| --- | --- |
 
-1. Flag a post at page 200 of
+| Test Case ID | TC-019 |
 
-2. 
+| Title | Page-based spoiler thresholds |
 
-3. Open as readers below and above page
+| Related Requirement ID(s) | FR8 |
 
-4. 
+| Preconditions | Future threshold metadata and UI; readers at different progress points. |
 
-5. Explicitly reveal as the reader below page 200.
+| Steps | 1. Flag a post at page 200 of 432.<br>2. Open as readers below and above page 200.<br>3. Explicitly reveal as the reader below page 200. |
 
-Expected: Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content.
+| Expected Result | Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content. |
 
-Actual: Blocked: US8 threshold extension deferred; current FR8 boolean flag and reveal are tested in TC-018 and TC-039.
+| Actual Result | Blocked: US8 threshold extension deferred; current FR8 boolean flag and reveal are tested in TC-018 and TC-039. |
 
-Status: Blocked; priority: Medium
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-020 EPUB notes privacy and invalid files
 
-Requirements: FR9, NFR4, NFR8
+| Field | Details |
 
-Preconditions: Future EPUB reader; valid EPUB, corrupt EPUB and non-EPUB files; Alice and Bob.
+| --- | --- |
 
-1. Open valid EPUB; create, reopen and delete a passage note.
+| Test Case ID | TC-020 |
 
-2. Attempt Bob access to Alice note.
+| Title | EPUB notes privacy and invalid files |
 
-3. Import corrupt and unsupported files.
+| Related Requirement ID(s) | FR9, NFR4, NFR8 |
 
-Expected: Notes retain correct passage anchors and owner privacy; invalid files show errors without removing saved notes.
+| Preconditions | Future EPUB reader; valid EPUB, corrupt EPUB and non-EPUB files; Alice and Bob. |
 
-Actual: Blocked: this feature has not been built yet.
+| Steps | 1. Open valid EPUB; create, reopen and delete a passage note.<br>2. Attempt Bob access to Alice note.<br>3. Import corrupt and unsupported files. |
 
-Status: Blocked; priority: Low
+| Expected Result | Notes retain correct passage anchors and owner privacy; invalid files show errors without removing saved notes. |
+
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Low |
 
 
 ## TC-021 Date-filtered reading summaries
 
-Requirements: FR10, NFR8
+| Field | Details |
 
-Preconditions: Future analytics; known completion dates including date-range boundaries, genres and authors.
+| --- | --- |
 
-1. Select an inclusive date range.
+| Test Case ID | TC-021 |
 
-2. Compare total and per-genre/per-author counts to fixtures.
+| Title | Date-filtered reading summaries |
 
-3. Select an empty range.
+| Related Requirement ID(s) | FR10, NFR8 |
 
-4. Attempt Bob access to Alice summary.
+| Preconditions | Future analytics; known completion dates including date-range boundaries, genres and authors. |
 
-Expected: Counts match boundary fixtures; empty range is zero; Bob cannot retrieve Alice summary.
+| Steps | 1. Select an inclusive date range.<br>2. Compare total and per-genre/per-author counts to fixtures.<br>3. Select an empty range.<br>4. Attempt Bob access to Alice summary. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Counts match boundary fixtures; empty range is zero; Bob cannot retrieve Alice summary. |
 
-Status: Blocked; priority: Low
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Low |
 
 
 ## TC-022 Optional sub-ratings warnings and migration
 
-Requirements: FR11, NFR5
+| Field | Details |
 
-Preconditions: Future enhanced review editor; existing overall-only review.
+| --- | --- |
 
-1. Reopen old review.
+| Test Case ID | TC-022 |
 
-2. Save without sub-ratings.
+| Title | Optional sub-ratings warnings and migration |
 
-3. Add prose, characters and plot sub-ratings and warnings.
+| Related Requirement ID(s) | FR11, NFR5 |
 
-4. Reject an invalid sub-rating and reopen.
+| Preconditions | Future enhanced review editor; existing overall-only review. |
 
-Expected: Old review remains readable; fields are optional; valid details persist; invalid save leaves the last saved version intact.
+| Steps | 1. Reopen old review.<br>2. Save without sub-ratings.<br>3. Add prose, characters and plot sub-ratings and warnings.<br>4. Reject an invalid sub-rating and reopen. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Old review remains readable; fields are optional; valid details persist; invalid save leaves the last saved version intact. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-023 Buddy-read invitation and membership privacy
 
-Requirements: FR12, NFR8
+| Field | Details |
 
-Preconditions: Future buddy-read groups; Alice, Bob and non-member Charlie.
+| --- | --- |
 
-1. Alice creates b1 group and invites Bob.
+| Test Case ID | TC-023 |
 
-2. Bob rejects then accepts a new invitation.
+| Title | Buddy-read invitation and membership privacy |
 
-3. Charlie attempts direct group read/write.
+| Related Requirement ID(s) | FR12, NFR8 |
 
-4. Bob opens discussion after acceptance.
+| Preconditions | Future buddy-read groups; Alice, Bob and non-member Charlie. |
 
-Expected: Rejected or unaccepted members have no access; accepted Bob can read/write; Charlie is denied.
+| Steps | 1. Alice creates b1 group and invites Bob.<br>2. Bob rejects then accepts a new invitation.<br>3. Charlie attempts direct group read/write.<br>4. Bob opens discussion after acceptance. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Rejected or unaccepted members have no access; accepted Bob can read/write; Charlie is denied. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-024 Deterministic community recommendations
 
-Requirements: FR13
+| Field | Details |
 
-Preconditions: Future recommendation service; books with 3, 2, 2 and 0 reviews.
+| --- | --- |
 
-1. Request recommendations.
+| Test Case ID | TC-024 |
 
-2. Verify descending review counts and alphabetical title tie-break.
+| Title | Deterministic community recommendations |
 
-3. Follow each book link.
+| Related Requirement ID(s) | FR13 |
 
-4. Repeat with no reviews.
+| Preconditions | Future recommendation service; books with 3, 2, 2 and 0 reviews. |
 
-Expected: Correct stable order and detail links; empty activity is handled clearly.
+| Steps | 1. Request recommendations.<br>2. Verify descending review counts and alphabetical title tie-break.<br>3. Follow each book link.<br>4. Repeat with no reviews. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Correct stable order and detail links; empty activity is handled clearly. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-025 Verified author application and admin decision
 
-Requirements: FR14, NFR4
+| Field | Details |
 
-Preconditions: Future author verification; reader, applicant and admin accounts.
+| --- | --- |
 
-1. Apply for a specific book.
+| Test Case ID | TC-025 |
 
-2. Attempt verification as ordinary reader.
+| Title | Verified author application and admin decision |
 
-3. Approve as admin.
+| Related Requirement ID(s) | FR14, NFR4 |
 
-4. Post as the verified author.
+| Preconditions | Future author verification; reader, applicant and admin accounts. |
 
-Expected: Only admin can verify; badge is tied to the approved author/book; posts visibly identify author; failed applications do not grant a badge.
+| Steps | 1. Apply for a specific book.<br>2. Attempt verification as ordinary reader.<br>3. Approve as admin.<br>4. Post as the verified author. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Only admin can verify; badge is tied to the approved author/book; posts visibly identify author; failed applications do not grant a badge. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-026 Follow feed without private activity leakage
 
-Requirements: FR15, NFR8
+| Field | Details |
 
-Preconditions: Future follow/feed service; Alice and Bob with public reviews and private shelf activity.
+| --- | --- |
 
-1. Alice follows Bob.
+| Test Case ID | TC-026 |
 
-2. Inspect following list, suggestions and feed.
+| Title | Follow feed without private activity leakage |
 
-3. Confirm only public activity appears.
+| Related Requirement ID(s) | FR15, NFR8 |
 
-4. Unfollow and publish another Bob review.
+| Preconditions | Future follow/feed service; Alice and Bob with public reviews and private shelf activity. |
 
-Expected: Following list and eligible review feed update; private progress and shelves never appear; unfollowed future activity is excluded.
+| Steps | 1. Alice follows Bob.<br>2. Inspect following list, suggestions and feed.<br>3. Confirm only public activity appears.<br>4. Unfollow and publish another Bob review. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Following list and eligible review feed update; private progress and shelves never appear; unfollowed future activity is excluded. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-027 Report and moderate with role enforcement
 
-Requirements: FR16, NFR4
+| Field | Details |
 
-Preconditions: Future reports and moderation; existing review/thread; reader and admin.
+| --- | --- |
 
-1. Report content; verify confirmation without automatic removal.
+| Test Case ID | TC-027 |
 
-2. Attempt reader access to queue.
+| Title | Report and moderate with role enforcement |
 
-3. Admin dismisses one report and removes another item.
+| Related Requirement ID(s) | FR16, NFR4 |
 
-4. Resolve a report whose content was already removed.
+| Preconditions | Future reports and moderation; existing review/thread; reader and admin. |
 
-Expected: Reader queue access denied; resolution action, admin and timestamp recorded; removed content hidden; already-removed case handled.
+| Steps | 1. Report content; verify confirmation without automatic removal.<br>2. Attempt reader access to queue.<br>3. Admin dismisses one report and removes another item.<br>4. Resolve a report whose content was already removed. |
 
-Actual: Blocked: this feature has not been built yet.
+| Expected Result | Reader queue access denied; resolution action, admin and timestamp recorded; removed content hidden; already-removed case handled. |
 
-Status: Blocked; priority: Medium
+| Actual Result | Blocked: this feature has not been built yet. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-028 Measure 100-book browser performance
 
-Requirements: NFR1
+| Field | Details |
 
-Preconditions: Fresh local browser; 100 generated book fixtures; one selected reader; fixed viewport.
+| --- | --- |
 
-1. Run 20 title searches.
+| Test Case ID | TC-028 |
 
-2. Run 20 alternating shelf-status saves.
+| Title | Measure 100-book browser performance |
 
-3. Time submission through DOM update and two animation frames.
+| Related Requirement ID(s) | NFR1 |
 
-4. Record environment and all timings.
+| Preconditions | Fresh local browser; 100 generated book fixtures; one selected reader; fixed viewport. |
 
-Expected: At least 19 of 20 searches AND 19 of 20 shelf updates complete within 2,000 ms.
+| Steps | 1. Run 20 title searches.<br>2. Run 20 alternating shelf-status saves.<br>3. Time submission through DOM update and two animation frames.<br>4. Record environment and all timings. |
 
-Actual: With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms.
+| Expected Result | At least 19 of 20 searches AND 19 of 20 shelf updates complete within 2,000 ms. |
 
-Status: Pass; priority: High
+| Actual Result | With 100 books and one reader, all 20 searches and all 20 shelf updates finished within two seconds. The slowest search took 6.5 ms; the slowest update took 6.6 ms. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-029 First-time usability and action count
 
-Requirements: NFR2
+| Field | Details |
 
-Preconditions: Five first-time participants, fresh demo data and a timer; no coaching.
+| --- | --- |
 
-1. Give only: "Find Frankenstein, add it, then mark Currently Reading".
+| Test Case ID | TC-029 |
 
-2. Count actions from book details to shelf addition.
+| Title | First-time usability and action count |
 
-3. Record completion time and errors for each participant.
+| Related Requirement ID(s) | NFR2 |
 
-Expected: Shelf addition takes at most three actions; at least four of five participants finish the full task within three minutes.
+| Preconditions | Five first-time participants, fresh demo data and a timer; no coaching. |
 
-Actual: Blocked: five first-time participants have not been recruited; no user-study results claimed.
+| Steps | 1. Give only: &quot;Find Frankenstein, add it, then mark Currently Reading&quot;.<br>2. Count actions from book details to shelf addition.<br>3. Record completion time and errors for each participant. |
 
-Status: Blocked; priority: Medium
+| Expected Result | Shelf addition takes at most three actions; at least four of five participants finish the full task within three minutes. |
+
+| Actual Result | Blocked: five first-time participants have not been recruited; no user-study results claimed. |
+
+| Status | Blocked |
+
+| Priority | Medium |
 
 
 ## TC-030 Keyboard access labels and focus sample
 
-Requirements: NFR3
+| Field | Details |
 
-Preconditions: Browser with Alice selected and fresh interactive page.
+| --- | --- |
 
-1. Inspect discovery input labels.
+| Test Case ID | TC-030 |
 
-2. Focus search once, then type and use Tab/Enter to open Frankenstein.
+| Title | Keyboard access labels and focus sample |
 
-3. Use keyboard after setting focus to shelf, progress and review controls.
+| Related Requirement ID(s) | NFR3 |
 
-4. Inspect focus outline and textual feedback.
+| Preconditions | Browser with Alice selected and fresh interactive page. |
 
-Expected: Sample operations work without mouse clicks; discovery controls have labels; focus is visible and status/error text is readable. Full sequential-navigation and screen-reader audit remains required.
+| Steps | 1. Inspect discovery input labels.<br>2. Focus search once, then type and use Tab/Enter to open Frankenstein.<br>3. Use keyboard after setting focus to shelf, progress and review controls.<br>4. Inspect focus outline and textual feedback. |
 
-Actual: Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending.
+| Expected Result | Sample operations work without mouse clicks; discovery controls have labels; focus is visible and status/error text is readable. Full sequential-navigation and screen-reader audit remains required. |
 
-Status: Pass; priority: Medium
+| Actual Result | Search, open, add, progress and review operated with keyboard after a test script setting the keyboard focus; visible 3px outline and labels checked on discovery. Full manual keyboard and assistive-technology audit pending. |
+
+| Status | Pass |
+
+| Priority | Medium |
 
 
 ## TC-031 Check real sign-in and access rules
 
-Requirements: NFR4, FR1, FR2, FR4, FR6, FR9
+| Field | Details |
 
-Preconditions: Future server-side sign-in; two accounts; password database and ended session fixtures.
+| --- | --- |
 
-1. Inspect password hashes.
+| Test Case ID | TC-031 |
 
-2. Use Bob credentials to alter Alice profile, shelf, review and note by ID.
+| Title | Check real sign-in and access rules |
 
-3. Sign out Alice and replay the old session.
+| Related Requirement ID(s) | NFR4, FR1, FR2, FR4, FR6, FR9 |
 
-Expected: Every attempt to change another user's data and request using a session that has ended is denied server-side; passwords use a a password-hashing tool designed to store passwords safely.
+| Preconditions | Future server-side sign-in; two accounts; password database and ended session fixtures. |
 
-Actual: Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements.
+| Steps | 1. Inspect password hashes.<br>2. Use Bob credentials to alter Alice profile, shelf, review and note by ID.<br>3. Sign out Alice and replay the old session. |
 
-Status: Blocked; priority: High
+| Expected Result | Every attempt to change another user&#x27;s data and request using a session that has ended is denied server-side; passwords use a a password-hashing tool designed to store passwords safely. |
+
+| Actual Result | Blocked: browser demo selection and localStorage cannot meet server-side sign-in or security requirements. |
+
+| Status | Blocked |
+
+| Priority | High |
 
 
 ## TC-032 Keep saved data when the app reopens
 
-Requirements: NFR5, FR2, FR4, FR5, FR6, FR7
+| Field | Details |
 
-Preconditions: Map-backed test version of browser storage; fresh service.
+| --- | --- |
 
-1. Save profile, shelf, page, review and discussion.
+| Test Case ID | TC-032 |
 
-2. Construct a new service using the same stored JSON.
+| Title | Keep saved data when the app reopens |
 
-3. Read each record.
+| Related Requirement ID(s) | NFR5, FR2, FR4, FR5, FR6, FR7 |
 
-Expected: All saved values remain. TC-039 separately verifies an actual browser reload.
+| Preconditions | Map-backed test version of browser storage; fresh service. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Save profile, shelf, page, review and discussion.<br>2. Construct a new service using the same stored JSON.<br>3. Read each record. |
 
-Status: Pass; priority: High
+| Expected Result | All saved values remain. TC-039 separately verifies an actual browser reload. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-033 Failed saves keep existing data
 
-Requirements: NFR5
+| Field | Details |
 
-Preconditions: MemoryStore with one saved shelf; inject save exception "Disk full".
+| --- | --- |
 
-1. Try changing shelf, progress, removing entry, publishing review/post and editing profile.
+| Test Case ID | TC-033 |
 
-2. After each error compare service state and adapter state to original.
+| Title | Failed saves keep existing data |
 
-Expected: Every operation throws; neither last saved state nor in-memory application state changes.
+| Related Requirement ID(s) | NFR5 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | MemoryStore with one saved shelf; inject save exception &quot;Disk full&quot;. |
 
-Status: Pass; priority: High
+| Steps | 1. Try changing shelf, progress, removing entry, publishing review/post and editing profile.<br>2. After each error compare service state and adapter state to original. |
+
+| Expected Result | Every operation throws; neither last saved state nor in-memory application state changes. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-034 Change storage without changing the screens
 
-Requirements: NFR6
+| Field | Details |
 
-Preconditions: MemoryStore and test version of BrowserStore implementing load/save.
+| --- | --- |
 
-1. Run identical search, shelf and progress assertions with each adapter.
+| Test Case ID | TC-034 |
 
-2. Review UI imports and service dependency boundaries.
+| Title | Change storage without changing the screens |
 
-Expected: Same application contract works with both adapters; screens use ReadingService methods; no direct data reads/writes in screen handlers. UI composition still selects an adapter.
+| Related Requirement ID(s) | NFR6 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | MemoryStore and test version of BrowserStore implementing load/save. |
 
-Status: Pass; priority: Medium
+| Steps | 1. Run identical search, shelf and progress assertions with each adapter.<br>2. Review UI imports and service dependency boundaries. |
+
+| Expected Result | Same application contract works with both adapters; screens use ReadingService methods; no direct data reads/writes in screen handlers. UI composition still selects an adapter. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | Medium |
 
 
 ## TC-035 Future test with many books and users
 
-Requirements: NFR7
+| Field | Details |
 
-Preconditions: Future deployed persistent service; 10,000 books; 50 concurrent authenticated users; recorded hardware.
+| --- | --- |
 
-1. Run mixed search and shelf-update workload for five minutes.
+| Test Case ID | TC-035 |
 
-2. Measure each action from the user's action to the visible result.
+| Title | Future test with many books and users |
 
-3. Calculate fraction within three seconds and error rate.
+| Related Requirement ID(s) | NFR7 |
 
-Expected: At least 95% of actions finish within three seconds and error rate is below 1%; publish hardware, workload and raw measurements.
+| Preconditions | Future deployed persistent service; 10,000 books; 50 concurrent authenticated users; recorded hardware. |
 
-Actual: Blocked: persistent multi-user service does not exist; local performance timings cannot validate this target.
+| Steps | 1. Run mixed search and shelf-update workload for five minutes.<br>2. Measure each action from the user&#x27;s action to the visible result.<br>3. Calculate fraction within three seconds and error rate. |
 
-Status: Blocked; priority: Low
+| Expected Result | At least 95% of actions finish within three seconds and error rate is below 1%; publish hardware, workload and raw measurements. |
+
+| Actual Result | Blocked: persistent multi-user service does not exist; local performance timings cannot validate this target. |
+
+| Status | Blocked |
+
+| Priority | Low |
 
 
 ## TC-036 Private records cannot be retrieved by another account
 
-Requirements: NFR8, FR4, FR5, FR9, FR10, FR12
+| Field | Details |
 
-Preconditions: Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group.
+| --- | --- |
 
-1. As Bob request each Alice resource by direct ID and list endpoints.
+| Test Case ID | TC-036 |
 
-2. Attempt unaccepted group discussion reads.
+| Title | Private records cannot be retrieved by another account |
 
-3. Verify public profile, review and forum remain accessible.
+| Related Requirement ID(s) | NFR8, FR4, FR5, FR9, FR10, FR12 |
 
-Expected: All access to private records is denied, not just hidden in UI; public resources remain visible.
+| Preconditions | Future server with real sign-in; Alice private shelves, progress, EPUB, notes, summary and group. |
 
-Actual: Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient.
+| Steps | 1. As Bob request each Alice resource by direct ID and list endpoints.<br>2. Attempt unaccepted group discussion reads.<br>3. Verify public profile, review and forum remain accessible. |
 
-Status: Blocked; priority: High
+| Expected Result | All access to private records is denied, not just hidden in UI; public resources remain visible. |
+
+| Actual Result | Blocked: full privacy needs server storage protected by real sign-in; demo isolation in TC-043 is insufficient. |
+
+| Status | Blocked |
+
+| Priority | High |
 
 
 ## TC-037 Render untrusted review text safely
 
-Requirements: FR6, NFR4
+| Field | Details |
 
-Preconditions: Browser demo with Alice selected and b1 details.
+| --- | --- |
 
-1. Save review text <img src=x onerror="window.xssExecuted=true">.
+| Test Case ID | TC-037 |
 
-2. Inspect rendered DOM and window execution marker.
+| Title | Render untrusted review text safely |
 
-Expected: Text displays literally; no injected image or script executes. This is one rendering check, not a complete security audit.
+| Related Requirement ID(s) | FR6, NFR4 |
 
-Actual: Review payload rendered as literal text; no image element or script execution.
+| Preconditions | Browser demo with Alice selected and b1 details. |
 
-Status: Pass; priority: High
+| Steps | 1. Save review text &lt;img src=x onerror=&quot;window.xssExecuted=true&quot;&gt;.<br>2. Inspect rendered DOM and window execution marker. |
+
+| Expected Result | Text displays literally; no injected image or script executes. This is one rendering check, not a complete security audit. |
+
+| Actual Result | Review payload rendered as literal text; no image element or script execution. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-038 Guest access boundary
 
-Requirements: FR1, FR2, FR3, FR4, FR5, FR6, FR7
+| Field | Details |
 
-Preconditions: Fresh service signed out.
+| --- | --- |
 
-1. Search and read public reviews.
+| Test Case ID | TC-038 |
 
-2. Attempt private shelf access and each profile/shelf/progress/review/post mutation.
+| Title | Guest access boundary |
 
-Expected: Public reads work; all listed operations requiring a selected reader are rejected. Real authentication remains deferred.
+| Related Requirement ID(s) | FR1, FR2, FR3, FR4, FR5, FR6, FR7 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Fresh service signed out. |
 
-Status: Pass; priority: High
+| Steps | 1. Search and read public reviews.<br>2. Attempt private shelf access and each profile/shelf/progress/review/post mutation. |
+
+| Expected Result | Public reads work; all listed operations requiring a selected reader are rejected. Real authentication remains deferred. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-039 Browser reading and discussion journey
 
-Requirements: FR3, FR4, FR5, FR6, FR7, FR8, NFR5
+| Field | Details |
 
-Preconditions: Fresh browser using the five-book catalogue; Alice and Bob demo identities.
+| --- | --- |
 
-1. Search Austen and open book.
+| Test Case ID | TC-039 |
 
-2. Add, move, reach final page and confirm Completed.
+| Title | Browser reading and discussion journey |
 
-3. Save 4.25-star review; post spoiler thread and reply.
+| Related Requirement ID(s) | FR3, FR4, FR5, FR6, FR7, FR8, NFR5 |
 
-4. Reveal spoiler then switch to Bob.
+| Preconditions | Fresh browser using the five-book catalogue; Alice and Bob demo identities. |
 
-5. Reload, select Alice and inspect shelf.
+| Steps | 1. Search Austen and open book.<br>2. Add, move, reach final page and confirm Completed.<br>3. Save 4.25-star review; post spoiler thread and reply.<br>4. Reveal spoiler then switch to Bob.<br>5. Reload, select Alice and inspect shelf. |
 
-Expected: Workflow renders correct data; spoiler text absent before reveal and hidden again after reader switch; Bob shelves empty; Alice Completed survives reload; no page errors.
+| Expected Result | Workflow renders correct data; spoiler text absent before reveal and hidden again after reader switch; Bob shelves empty; Alice Completed survives reload; no page errors. |
 
-Actual: Search, add, move, progress prompt, review, spoiler reveal, reply, reader isolation and real page reload passed; two screenshots saved; no page errors.
+| Actual Result | Search, add, move, progress prompt, review, spoiler reveal, reply, reader isolation and real page reload passed; two screenshots saved; no page errors. |
 
-Status: Pass; priority: High
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-040 Public profile review and discussion visibility
 
-Requirements: FR2, FR6, FR7, NFR8
+| Field | Details |
 
-Preconditions: Alice selected in fresh service.
+| --- | --- |
 
-1. Publish review and ordinary post.
+| Test Case ID | TC-040 |
 
-2. Sign out and read book reviews, Alice public profile and discussion.
+| Title | Public profile review and discussion visibility |
 
-Expected: All community-visible content remains readable; no private shelves are included in the public profile object.
+| Related Requirement ID(s) | FR2, FR6, FR7, NFR8 |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Preconditions | Alice selected in fresh service. |
 
-Status: Pass; priority: High
+| Steps | 1. Publish review and ordinary post.<br>2. Sign out and read book reviews, Alice public profile and discussion. |
+
+| Expected Result | All community-visible content remains readable; no private shelves are included in the public profile object. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-041 Browser save error and truthful feedback
 
-Requirements: NFR5
+| Field | Details |
 
-Preconditions: Browser has a saved Completed entry; inject localStorage.setItem failure.
+| --- | --- |
 
-1. Try changing status to Want to Read.
+| Test Case ID | TC-041 |
 
-2. Inspect message.
+| Title | Browser save error and truthful feedback |
 
-3. Restore storage and reopen My shelves.
+| Related Requirement ID(s) | NFR5 |
 
-Expected: Error text appears instead of success; last saved Completed status remains.
+| Preconditions | Browser has a saved Completed entry; inject localStorage.setItem failure. |
 
-Actual: Failed browser save displayed an error and retained Completed; no success message.
+| Steps | 1. Try changing status to Want to Read.<br>2. Inspect message.<br>3. Restore storage and reopen My shelves. |
 
-Status: Pass; priority: High
+| Expected Result | Error text appears instead of success; last saved Completed status remains. |
+
+| Actual Result | Failed browser save displayed an error and retained Completed; no success message. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-042 Reject unknown resources and unshelved progress
 
-Requirements: FR3, FR4, FR5, FR6, FR7
+| Field | Details |
 
-Preconditions: Alice selected with no shelves.
+| --- | --- |
 
-1. Request absent book details.
+| Test Case ID | TC-042 |
 
-2. Try shelf, review and thread with absent book ID.
+| Title | Reject unknown resources and unshelved progress |
 
-3. Update b1 progress before shelving it.
+| Related Requirement ID(s) | FR3, FR4, FR5, FR6, FR7 |
 
-Expected: Every invalid operation is rejected; no shelf records are created.
+| Preconditions | Alice selected with no shelves. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Request absent book details.<br>2. Try shelf, review and thread with absent book ID.<br>3. Update b1 progress before shelving it. |
 
-Status: Pass; priority: High
+| Expected Result | Every invalid operation is rejected; no shelf records are created. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-043 Demo reading-list separation
 
-Requirements: FR4, FR5, NFR8
+| Field | Details |
 
-Preconditions: Alice selected in fresh service.
+| --- | --- |
 
-1. Alice shelves b1.
+| Test Case ID | TC-043 |
 
-2. Switch to Bob and try shelves("alice").
+| Title | Demo reading-list separation |
 
-3. Bob shelves b2.
+| Related Requirement ID(s) | FR4, FR5, NFR8 |
 
-4. Switch back to Alice.
+| Preconditions | Alice selected in fresh service. |
 
-Expected: Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 checking.
+| Steps | 1. Alice shelves b1.<br>2. Switch to Bob and try shelves(&quot;alice&quot;).<br>3. Bob shelves b2.<br>4. Switch back to Alice. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Expected Result | Bob gets no Alice list and owner override is rejected; Alice still sees only b1. Browser data remains inspectable locally, so this is not full NFR8 checking. |
 
-Status: Pass; priority: High
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | High |
 
 
 ## TC-044 Completion date remains stable on repeat saves
 
-Requirements: FR4
+| Field | Details |
 
-Preconditions: Alice selected; controlled clock can advance one day.
+| --- | --- |
 
-1. Complete b1.
+| Test Case ID | TC-044 |
 
-2. Advance clock and save Completed again.
+| Title | Completion date remains stable on repeat saves |
 
-3. Move away from Completed then complete again.
+| Related Requirement ID(s) | FR4 |
 
-Expected: Repeated same-status save preserves first date; a later new completion records the new date.
+| Preconditions | Alice selected; controlled clock can advance one day. |
 
-Actual: Passed. See this test's result in unit-results.tap.
+| Steps | 1. Complete b1.<br>2. Advance clock and save Completed again.<br>3. Move away from Completed then complete again. |
 
-Status: Pass; priority: Medium
+| Expected Result | Repeated same-status save preserves first date; a later new completion records the new date. |
+
+| Actual Result | Passed. See this test&#x27;s result in unit-results.tap. |
+
+| Status | Pass |
+
+| Priority | Medium |

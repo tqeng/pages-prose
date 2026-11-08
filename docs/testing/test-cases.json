@@ -179,8 +179,7 @@
     ],
     "preconditions": "b5 has missing pages; Alice has shelved it.",
     "steps": [
-      "Attempt to save page",
-      "",
+      "Attempt to save page 0.",
       "Repeat with b5 total pages set to zero."
     ],
     "expected": "Both saves are rejected as tracking unavailable; percentage is not calculated.",
@@ -197,8 +196,7 @@
     ],
     "preconditions": "Alice has b1 Currently Reading.",
     "steps": [
-      "Save page",
-      "",
+      "Save page 432.",
       "Inspect status and completion prompt flag.",
       "Explicitly move to Completed and repeat save."
     ],
@@ -320,10 +318,8 @@
     ],
     "preconditions": "Future threshold metadata and UI; readers at different progress points.",
     "steps": [
-      "Flag a post at page 200 of",
-      "",
-      "Open as readers below and above page",
-      "",
+      "Flag a post at page 200 of 432.",
+      "Open as readers below and above page 200.",
       "Explicitly reveal as the reader below page 200."
     ],
     "expected": "Future threshold feature respects each reader progress and deliberate reveal; no spoiler text leaks into hidden content.",
